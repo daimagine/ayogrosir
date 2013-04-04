@@ -1,26 +1,33 @@
-<%= link_to "Nu Ayogrosir", root_path, :class => 'brand' %>
-<ul class="nav">
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+<nav class="top-nav span12">
+
+  <ul class="nav nav-pills">
+    <li class="active">
+      <a href="index.html">Beranda</a>
     </li>
-  <% else %>
     <li>
-    <%= link_to 'Login', new_user_session_path %>
+      <a href="search-page.html">Cari Toko</a>
     </li>
-  <% end %>
-  <% if user_signed_in? %>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Kategori Toko<b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#">Drop Down</a>
+        </li>
+      </ul>
+    </li>
+
     <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
+      <a href="page.html">Informasi</a>
     </li>
-    <% if current_user.has_role? :admin %>
-      <li>
-      <%= link_to 'Admin', users_path %>
-      </li>
-    <% end %>
-  <% else %>
     <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
+      <a href="profile-page.html">Cara Berbelanja</a>
     </li>
-  <% end %>
-</ul>
+    <li>
+      <a href="contact-page.html">Hubungi Kami</a>
+    </li>
+  </ul>
+
+</nav> <!-- end top-nav -->

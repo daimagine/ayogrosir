@@ -11,7 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402094853) do
+ActiveRecord::Schema.define(:version => 20130402110054) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "markets", :force => true do |t|
+    t.string   "name",                       :null => false
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "logo_img"
+    t.text     "description"
+    t.text     "info1"
+    t.integer  "page_view",   :default => 0
+    t.string   "status"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.integer  "store_id"
+    t.string   "name",                                                      :null => false
+    t.decimal  "price",       :precision => 14, :scale => 2,                :null => false
+    t.string   "logo_img"
+    t.text     "description"
+    t.text     "info1"
+    t.integer  "page_view",                                  :default => 0
+    t.string   "status"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +60,24 @@ ActiveRecord::Schema.define(:version => 20130402094853) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "stores", :force => true do |t|
+    t.integer  "market_id"
+    t.string   "name",                       :null => false
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "logo_img"
+    t.text     "description"
+    t.text     "info1"
+    t.integer  "page_view",   :default => 0
+    t.string   "status"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

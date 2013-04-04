@@ -1,35 +1,131 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html>
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Nu Ayogrosir" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Nu Ayogrosir" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Ayogrosir" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ayogrosir" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
+
   <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Header -->
+    <div class="container top-container">
+      <header>
+        <div class="row row-logo">
+
+          <div class="span3 top-location">
+            <%= render 'layouts/top_location' %>
+          </div> <!-- end top location indicator -->  
+
+          <div class="span6 top-logo center">
+            <h1 class="logo">
+              <a href="#">
+                <%= image_tag "logo.png", alt: 'logo', class: 'top-logo-img' %>
+              </a>
+            </h1>
+          </div> <!-- end logo -->
+
+          <div class="span3 login-panel pull-right">
+
+            <% if user_signed_in? %>
+              <%= link_to 'SIGN OUT', destroy_user_session_path, :method=>'delete' %>
+            <% else %>
+              <%= link_to 'SIGN IN', new_user_session_path %> | 
+              <%= link_to 'SIGN UP', new_user_registration_path %>
+
+              <form class="top-login-form">
+                  <input class="input-medium top-login-input" type="text" placeholder="Username">
+                  <input class="input-medium top-login-input" type="text" placeholder="Password">
+              </form> <!-- end top login form --> 
+            <% end %>
+
+          </div> <!-- end top login box -->
+
+        </div> <!-- end row logo --> 
+
+        <div class="row row-nav">
           <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
+        </div> <!-- end row nav --> 
+
+      </header> <!-- end header -->  
+
+      <div class="row-breadcrumb">
+        <%= render 'layouts/breadcrumb' %>
+      </div> <!-- end row breadcrumb --> 
+
+    </div> <!-- end top container -->
+    <!-- End of Header -->
+
+    <!-- Main Content --> 
+    <div class="container main-container">
+
+      <div class="content-input">
+        <%= render 'layouts/content_input' %>
+      </div> <!-- end content-input -->
+
+      <div class="content">
+
+        <div class="row">
+          <div class="span12">
+            <%= render 'layouts/messages' %>
           </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        </div> <!-- end messages -->
+
+
+        <div class="row content-adv">
+          <%= render 'layouts/content_adv' %>
+        </div> <!-- end of content advertising -->
+
+        <div class="row row-content">
+          
+          <!-- Core Content --> 
+          <div class="span10">
+            <%= yield %>
+          </div>
+          <!-- End of Core Content -->
+
+          <aside class="span2 sidebar-update">
+            <%= render 'layouts/sidebar' %>
+          </aside> <!-- end sidebar -->
+
+        </div><!-- end row content -->
+
+      </div><!-- end content -->
+
+    </div> <!-- end main container -->
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer>
+      
+      <div class="container footer-container">
+        <%= render 'layouts/footer' %>
+      </div><!-- end footer container -->
+
+    </footer> <!-- end footer -->
+    <!-- End of Footer -->
+
+    <script>
+    /**
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    */
+    </script>
+
+    <%= javascript_include_tag "application" %>
+
   </body>
 </html>

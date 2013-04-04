@@ -1,4 +1,16 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<!-- Market list -->
+<% @markets.each do |market| %>
+	<%= render 'market' %>
 <% end %>
+
+<div class="pagination pagination-right">
+  <ul>
+    <li class="disabled"><span>«</span></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>

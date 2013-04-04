@@ -1,0 +1,22 @@
+<div class="row markets">
+
+  <div class="span10 market title">
+    <h4>
+      <%= link_to '#{market.name} <span>Last update #{market.updated_at}</span>'.html_safe, market %>
+    <h4>
+  </div>
+
+  <% market.lastProduct.each do |product| %>
+
+    <div class="span2 market">
+      <a href="profile-page.html">
+        <img src="img/model01.jpg" alt="">
+      </a>
+      <p>
+        Tas Lipat HP<br><span>Rp 100.000</span>
+      </p>
+    </div>
+
+  <% end %>
+
+</div><!-- end row market -->
