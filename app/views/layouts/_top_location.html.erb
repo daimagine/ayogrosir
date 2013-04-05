@@ -8,14 +8,17 @@
     </button>
 
     <ul class="dropdown-menu">
+      <% mark = false %>
       <% @markets && @markets.each_with_index do |market, n| %>
         <% if market.id != @current_market.id %>
           <li>
             <%= link_to market.name.upcase, default_market_path(market), "tabindex" => "-1"%>
           </li>
-          <% if n < @markets.size - 1 %>
-            <li class="divider"></li>
+          <% if n < @markets.size - 1 && !(!mark && n == ( @markets.size - 2 )) %>
+              <li class="divider"></li>
           <% end %>
+        <% else %>
+          <% mark = true %>
         <% end %>
       <% end %>
     </ul>

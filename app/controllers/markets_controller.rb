@@ -5,6 +5,7 @@ class MarketsController < ApplicationController
 		market = Market.find(params[:id])
 		if market
 			session[:market_id] = market.id
+			@current_market = market
 			flash[:success] = "Successfully change default market to #{current_market.name.upcase}"
 		else
 			flash[:error] = "Could not change default market"
