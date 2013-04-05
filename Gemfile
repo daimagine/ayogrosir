@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+gem 'webrick', '1.3.1'
 
 group :production, :staging do
   gem "pg"

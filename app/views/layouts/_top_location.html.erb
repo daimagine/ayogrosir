@@ -2,17 +2,22 @@
   <h4 class="loc-label">LOKASI</h4>
   <div class="btn-group">
     
-    <button class="btn btn-large btn-success">PASAR SENIN</button>
+    <button class="btn btn-large btn-success"><%= @current_market.name.upcase %></button>
     <button class="btn btn-large btn-success dropdown-toggle" data-toggle="dropdown">
       <span class="caret"></span>
     </button>
 
     <ul class="dropdown-menu">
-      <li><a tabindex="-1" href="#">PASAR JATI NEGARA</a></li>
-      <li class="divider"></li>
-      <li><a tabindex="-1" href="#">PASAR MINGGU</a></li>
-      <li class="divider"></li>
-      <li><a tabindex="-1" href="#">PASAR REBO</a></li>
+      <% @markets && @markets.each_with_index do |market, n| %>
+        <% if market.id != @current_market.id %>
+          <li>
+            <%= link_to market.name.upcase, default_market_path(market), "tabindex" => "-1"%>
+          </li>
+          <% if n < @markets.size - 1 %>
+            <li class="divider"></li>
+          <% end %>
+        <% end %>
+      <% end %>
     </ul>
 
   </div>

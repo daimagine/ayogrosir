@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
     @users = User.all
-    @markets = Market.most_update
+    @stores = current_market.stores && current_market.stores.latest
   end
 end

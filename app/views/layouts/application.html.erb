@@ -70,11 +70,7 @@
     <!-- Main Content --> 
     <div class="container main-container">
 
-      <div class="content-input">
-        <%= render 'layouts/content_input' %>
-      </div> <!-- end content-input -->
-
-      <div class="content">
+      <div class="notif-area">
 
         <div class="row">
           <div class="span12">
@@ -82,15 +78,30 @@
           </div>
         </div> <!-- end messages -->
 
+      </div> <!-- end of notif area -->
 
-        <div class="row content-adv">
-          <%= render 'layouts/content_adv' %>
-        </div> <!-- end of content advertising -->
+      <% if current_page?(root_url) %>
+
+        <div class="content-input">
+          <%= render 'layouts/content_input' %>
+        </div> <!-- end content-input -->
+
+      <% end %>
+
+      <div class="content">
+
+        <% if current_page?(root_url) %>
+
+          <div class="row content-adv">
+            <%= render 'layouts/content_adv' %>
+          </div> <!-- end of content advertising -->
+
+        <% end %>
 
         <div class="row row-content">
           
           <!-- Core Content --> 
-          <div class="span10">
+          <div class="span10 core-content">
             <%= yield %>
           </div>
           <!-- End of Core Content -->

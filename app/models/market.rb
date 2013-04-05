@@ -6,4 +6,7 @@ class Market < ActiveRecord::Base
 		:status
 
 	validates :name, presence: true
+
+	has_many :stores, :dependent => :destroy
+
 end

@@ -6,4 +6,7 @@ class Store < ActiveRecord::Base
 		:status
 
 	validates :name, presence: true
+
+	belongs_to :market
+	has_many :products, :dependent => :destroy
 end

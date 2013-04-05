@@ -1,0 +1,20 @@
+<div class="row markets">
+
+  <div class="span10 market title">
+    <h4>
+      <%= link_to "#{store.name} <span>Last update #{store.updated_at.strftime('%m/%d/%Y')}</span>".html_safe, store %>
+    <h4>
+  </div>
+
+	<% store.products && store.products.latest.limit(5).each do |product| %>
+
+    <div class="span2 market">
+    	<%= link_to image_tag(product.logo_img), product %>
+      <p>
+        <%= product.name %><br><span>Rp <%= number_with_precision(product.price, :precision => 2) %></span>
+      </p>
+    </div>
+
+  <% end %>
+
+</div><!-- end row market -->
