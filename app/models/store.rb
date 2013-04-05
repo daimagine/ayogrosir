@@ -9,4 +9,8 @@ class Store < ActiveRecord::Base
 
 	belongs_to :market
 	has_many :products, :dependent => :destroy
+
+	def logo_img
+		super || 'logo-toko.png'
+	end
 end

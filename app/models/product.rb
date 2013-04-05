@@ -9,4 +9,7 @@ class Product < ActiveRecord::Base
 
 	belongs_to :store
 
+	def logo_img
+		super || 'model04.png'
+	end
 end

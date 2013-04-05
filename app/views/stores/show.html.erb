@@ -1,0 +1,50 @@
+
+<div class="row profile-toko">
+
+<div class="span3 logo-toko">
+  <%= image_tag @store.logo_img, class: "img-polaroid", alt: "photo" %>
+</div> <!-- end logo toko -->
+
+<div class="span4 desc-toko">
+
+  <h4><%= @store.name %></h4>
+
+  <p><%= @store.description %></p>
+
+  <a class="btn btn-warning pull-right" href="#">
+    <i class="icon-thumbs-up"></i> Follow
+  </a>
+
+</div> <!-- end desc-toko -->
+
+<div class="span4 desc-toko information">
+
+  <h4>Informasi</h4>
+
+  <p><b>Info: </b><%= @store.info1 %></p>
+  <p><b>phone: </b><%= @store.phone1 %></p>
+
+  <p><%= @store.info2 %></p>
+
+</div> <!-- end desc-toko info -->
+
+</div> <!-- row -->
+
+<div class="row">
+
+<div class="span12 market title">
+  <h4>Products Catalog<h4>
+</div>
+
+<% @store.products && @store.products.latest.each do |product| %>
+
+  <div class="span2 market">
+    <%= link_to image_tag(product.logo_img), product %>
+    <p>
+      <%= product.name %><br><span>Rp <%= number_with_precision(product.price, :precision => 2) %></span>
+    </p>
+  </div>
+
+<% end %>
+
+</div><!-- end row -->
