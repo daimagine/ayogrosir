@@ -85,6 +85,7 @@ module NuAyogrosir
       #{config.root}/app/models/concerns
     )
     # end of concern autoload
+    config.assets.initialize_on_precompile = false
 
   end
 end
