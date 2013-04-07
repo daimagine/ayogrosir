@@ -1,0 +1,46 @@
+<div class="row profile-product">
+
+  <div class="span3 jenis-product">
+    <%= image_tag @product.logo_img, class: "img-polaroid", alt: "photo" %>
+  </div> <!-- end jenis product -->
+
+  <div class="span6 desc-product">
+
+    <h4><%= @product.name %></h4>
+
+    <b>Deskripsi Barang</b>
+    <p><%= @product.description %></p>
+
+    <h6><span>Harga:&nbsp&nbsp</span><%= @product.price %></h6>
+    <h6><span>Berat:&nbsp&nbsp</span><%= @product.weight %></h6>
+
+    <form class="form-horizontal">
+      <label>Warna</label>
+        <select class="span2">
+          <option>Putih</option>
+          <option>Merah</option>
+          <option>Hitam</option>
+          <option>Hijau</option>
+          <option>Biru</option>
+        </select>
+      </label>
+    </form>
+
+    <form class="form-horizontal">
+      <label>Jumlah</label>
+        <select class="span2">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </label>
+    </form>  
+
+    <a class="btn btn-primary btn-large pull-right" href="#">Beli Produk!</a>
+    <%= link_to 'Kembali Ke Toko', @product.store, class: 'btn btn-info btn-large offset2' %>
+
+  </div> <!-- end desc-product -->
+
+</div> <!-- row -->

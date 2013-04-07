@@ -3,29 +3,30 @@
   <div class="sidebar noline">
     <h5>Toko Favorit</h5>
     <ul>
-      <li><a href="profile-page.html">Toko Pasar Senen</a></li>
-      <li><a href="profile-page.html">Toko Sinar Makmur</a></li>
-      <li><a href="profile-page.html">Toko Jaya Abadi</a></li>
-      <li><a href="profile-page.html">Toko Besi Indah</a></li>
+      <!-- Popular Stores -->
+      <% @popular_stores.each do |store| %>
+        <li><%= link_to store.name, store %></li>
+      <% end %>
     </ul>
   </div><!-- end sidebar -->
 
   <div class="sidebar noline">
     <h5>Toko Terupdate</h5>
     <ul>
-      <li><a href="profile-page.html">Toko Pasar Senen</a></li>
-      <li><a href="profile-page.html">Toko Sinar Makmur</a></li>
-      <li><a href="profile-page.html">Toko Jaya Abadi</a></li>
-      <li><a href="profile-page.html">Toko Besi Indah</a></li>
+      <!-- Latest Stores -->
+      <% @latest_stores.each do |store| %>
+        <li><%= link_to store.name, store %></li>
+      <% end %>
     </ul>
   </div><!-- end sidebar -->
 
   <div class="sidebar noline">
     <h5>Toko Terbaru</h5>
     <ul>
-      <li><a href="profile-page.html">Toko Pasar Senen</a></li>
-      <li><a href="profile-page.html">Toko Sinar Makmur</a></li>
-      <li><a href="profile-page.html">Toko Jaya Abadi</a></li>
+      <!-- Newest Stores -->
+      <% @newest_stores.each do |store| %>
+        <li><%= link_to store.name, store %></li>
+      <% end %>
     </ul>
   </div><!-- end sidebar -->
 

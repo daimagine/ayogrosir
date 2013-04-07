@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def index
+	def index
     @users = User.all
     @stores = current_market.stores && current_market.stores.latest
   end

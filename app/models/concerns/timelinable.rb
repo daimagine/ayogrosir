@@ -6,6 +6,7 @@ module Timelinable
     scope :active, where(:status => 'A')
     scope :latest, order('updated_at DESC')
     scope :newest, order('created_at DESC')
+    scope :popular, order('page_view DESC')
 
     default_scope active
   end

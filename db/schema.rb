@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405201523) do
+ActiveRecord::Schema.define(:version => 20130407042457) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20130405201523) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "pages", :force => true do |t|
+    t.string   "name",                        :null => false
+    t.string   "slug",                        :null => false
+    t.text     "content",                     :null => false
+    t.integer  "page_view",  :default => 0
+    t.string   "status",     :default => "A"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "products", :force => true do |t|
     t.integer  "store_id"
     t.string   "name",                                                      :null => false
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130405201523) do
     t.string   "status"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
+    t.float    "weight"
   end
 
   create_table "roles", :force => true do |t|
