@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
 
 	belongs_to :store
 	has_many :counters, :as => :resource
+	has_and_belongs_to_many :categories, :join_table => :product_categories
 
 	def logo_img
 		super || 'thumb-product.png'

@@ -1,0 +1,64 @@
+
+<%= form_for @search, :url => { :action => "index" }, :method => 'get' do |f| %>
+	<div class="row row-search">
+		<div class="span12 search-bar">
+			<div class="row set-one">
+				<div class="span2">
+					<h5>Lokasi</h5>
+				</div>
+
+				<% Market.all.each do |market| %>
+					<div class="span2">
+					  <label class="radio">
+		          <%= f.radio_button :market_id, market.id %>
+		          <%= market.name %>
+		        </label>
+		      </div>
+				<% end %>
+			</div> <!-- end of row set one -->
+
+			<div class="row set-two">
+				<div class="span2">
+					<h5>Nama Toko</h5>
+				</div>
+				<div class="span9">
+          <%= f.text_field :keywords, :class => 'input-block span9', :placeholder => 'Ketik nama toko disini' %>
+        </div>
+			</div> <!-- end of row set two -->
+
+			<div class="row set-three">
+				<div class="span2">
+					<h5>Kategori Barang</h5>
+				</div>
+				<div class="span9">
+					<%= f.collection_select :category_id, Category.where('type = ?', 'Store'), :id, :name, {}, {:class => 'span9'} %>
+        </div>
+			</div> <!-- end of row set three -->
+
+			<div class="row set-four">
+				<div class="span2">
+					<h5>Urutkan Sesuai</h5>
+				</div>
+
+				<% ["Name", "Popular"].each do |order| %>
+					<div class="span2">
+					  <label class="radio">
+		          <%= f.radio_button :order_by, order %>
+		          <%= order %>
+		        </label>
+		      </div>
+				<% end %>
+			</div> <!-- end of row set four -->
+
+			<div class="row set-five">
+				<button type="submit" class="btn btn-large btn-warning span3 offset8" type="button">CARI</button>
+			</div> <!-- end of row set five -->
+
+		</div> <!-- end of search bar -->
+	</div> <!-- end of row search -->
+<% end %>
+
+<!-- Market list -->
+<% @search && @search.stores && @search.stores.each do |store| %>
+	<%= render store %>
+<% end %>

@@ -10,6 +10,7 @@ class Store < ActiveRecord::Base
 	belongs_to :market
 	has_many :products, :dependent => :destroy
 	has_many :counters, :as => :resource
+	has_and_belongs_to_many :categories, :join_table => :store_categories
 
 	def logo_img
 		super || 'logo-toko.png'
