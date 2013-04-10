@@ -19,6 +19,13 @@
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="top-counter" class="center">
+      <!-- <p>VISITOR</p> -->
+      <div class="counter">
+        <span><%= @app_counter %></span>
+      </div> <!-- end counter -->
+    </div> <!-- end top-counter -->
+
     <!-- Header -->
     <div class="container top-container">
       <header>
@@ -102,9 +109,11 @@
           </div>
           <!-- End of Core Content -->
 
-          <aside class="span2 sidebar-update">
-            <%= render 'layouts/sidebar' %>
-          </aside> <!-- end sidebar -->
+          <% if current_page?(root_url) %>
+            <aside class="span2 sidebar-update">
+              <%= render 'layouts/sidebar' %>
+            </aside> <!-- end sidebar -->
+          <% end %>
 
         </div><!-- end row content -->
 

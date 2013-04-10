@@ -8,5 +8,6 @@ class Market < ActiveRecord::Base
 	validates :name, presence: true
 
 	has_many :stores, :dependent => :destroy
+	has_many :counters, :as => :resource
 
 end

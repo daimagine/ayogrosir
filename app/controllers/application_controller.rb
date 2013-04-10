@@ -1,11 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :current_market, :initialize_market, :initialize_store
-  after_filter :show_default_market, :pageview_increment
+  before_filter :current_market
+  before_filter :show_default_market, :pageview_increment
+  before_filter :initialize_app_counter
+  before_filter :initialize_market, :initialize_store
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
+  end
+
+  def initialize_app_counter
+    @app_counter = Counter.where('resource_type = ?', 'Application').count
+    logger.info "Total unique visitor is #{@app_counter}"
   end
 
   def current_market
@@ -17,25 +24,56 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_market
-  	@markets ||= Market.all
+    if check_root?
+  	 @markets ||= Market.all
+    end
   end
 
   def initialize_store
-    @latest_stores ||= Store.latest.limit(5)
-    @newest_stores ||= Store.newest.limit(5)
-    @popular_stores ||= Store.popular.limit(5)
+    if check_root?
+      @latest_stores ||= Store.latest.limit(5)
+      @newest_stores ||= Store.newest.limit(5)
+      @popular_stores ||= Store.popular.limit(5)
+    end
   end
 
   private 
+
+  def check_root?
+    params[:controller].eql?('home') and params[:action].eql?('index')
+  end
 
   def show_default_market
   	logger.info "Default market is #{@current_market.name.upcase}"
   end
 
   def pageview_increment
+    ipaddr = request.remote_ip
+    logger.info "incoming page view from ip #{ipaddr}"
+
     if @resource && @resource.page_view
-      @resource.page_view += 1
-      @resource.save
+      result = @resource.counters.where('ip_address = ?', ipaddr).limit(1)
+      if !result.blank?
+        # same ip
+      else
+        # different ip, create new counter
+        logger.info "Store new resource counter for ip #{ipaddr}"
+        c = Counter.new
+        c.ip_address = ipaddr
+        @resource.counters << c
+        @resource.page_view += 1
+        @resource.save
+      end
+    end
+
+    # counter for whole website
+    counter = Counter.where('ip_address = ? and resource_type = ?', ipaddr, 'Application').limit(1)
+    if counter.blank?
+      c = Counter.new
+      c.ip_address = ipaddr
+      c.resource_type = 'Application'
+      c.save
+      logger.info "Store new application counter for ip #{ipaddr}"
     end
   end
 end

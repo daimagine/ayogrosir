@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
 	validates :price, presence: true
 
 	belongs_to :store
+	has_many :counters, :as => :resource
 
 	def logo_img
 		super || 'thumb-product.png'
