@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_market
+  	@markets ||= Market.all
     if check_root?
-  	 @markets ||= Market.all
     end
   end
 

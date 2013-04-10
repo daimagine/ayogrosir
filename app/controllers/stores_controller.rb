@@ -5,7 +5,7 @@ class StoresController < ApplicationController
 
 	def index
 		@search.update_attributes(params[:search_store])
-		
+
 		logger.info "Keyword     : " + @search.keywords.to_s
 		logger.info "Market id   : " + @search.market_id.to_s
 		logger.info "Category id : " + @search.category_id.to_s
@@ -19,7 +19,7 @@ class StoresController < ApplicationController
 
 	def search
 		@search ||= SearchStore.new(
-									:market_id => Market.first.id, 
+									:market_id => @current_market.id, 
 									:order_by => 'Name'
 								)
 	end

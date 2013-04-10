@@ -11,6 +11,6 @@ class MarketsController < ApplicationController
 			flash[:error] = "Could not change default market"
 		end
 		logger.info "Change default market to #{current_market.name}"
-		redirect_to :back
+		redirect_to :root
 	end
 end
