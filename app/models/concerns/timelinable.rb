@@ -3,6 +3,7 @@ module Timelinable
 
   # you can include other things here
   included do
+    scope :all_status, where(arel_table[:status].not_eq('x'))
     scope :active, where(:status => 'A')
     scope :latest, order('updated_at DESC')
     scope :newest, order('created_at DESC')

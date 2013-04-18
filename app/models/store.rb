@@ -12,6 +12,8 @@ class Store < ActiveRecord::Base
 	has_many :counters, :as => :resource
 	has_and_belongs_to_many :categories, :join_table => :store_categories
 
+  has_and_belongs_to_many :users, join_table: 'store_follow'
+
 	def logo_img
 		super || 'logo-toko.png'
 	end

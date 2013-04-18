@@ -11,9 +11,16 @@
 
   <p><%= @store.description %></p>
 
-  <a class="btn btn-warning pull-right" href="#">
-    <i class="icon-thumbs-up"></i> Follow
-  </a>
+  <% if user_signed_in? %>
+    <% if current_user && current_user.following_store?(@store) %>
+      <p><%= link_to '<i class="icon-thumbs-down"></i> Unfollow'.html_safe, unfollow_store_path(@store), class: 'btn btn-info pull-right', method: 'delete' %></p>
+    <% else %>
+      <p><%= link_to '<i class="icon-thumbs-up"></i> Follow'.html_safe, follow_store_path(@store), class: 'btn btn-warning pull-right', method: 'post' %></p>
+    <% end %>
+
+  <% else %>
+    <p><%= link_to '<i class="icon-thumbs-up"></i> Sign in to follow this store'.html_safe, new_user_session_path, class: 'btn btn-info pull-right' %></p>
+  <% end %>  
 
 </div> <!-- end desc-toko -->
 
