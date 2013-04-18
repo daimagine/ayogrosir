@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @admin_store.name %>
+</p>
+
+<p>
+  <b>Street1:</b>
+  <%= @admin_store.street1 %>
+</p>
+
+<p>
+  <b>Street2:</b>
+  <%= @admin_store.street2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @admin_store.city %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @admin_store.postal_code %>
+</p>
+
+<p>
+  <b>Phone1:</b>
+  <%= @admin_store.phone1 %>
+</p>
+
+<p>
+  <b>Phone2:</b>
+  <%= @admin_store.phone2 %>
+</p>
+
+<p>
+  <b>Logo img:</b>
+  <%= @admin_store.logo_img %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @admin_store.description %>
+</p>
+
+<p>
+  <b>Info1:</b>
+  <%= @admin_store.info1 %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @admin_store.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_store_path(@admin_store) %> |
+<%= link_to 'Back', admin_stores_path %>

@@ -1,0 +1,21 @@
+<%= simple_form_for(@admin_market) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :street1 %>
+    <%= f.input :street2 %>
+    <%= f.input :city %>
+    <%= f.input :postal_code %>
+    <%= f.input :phone1 %>
+    <%= f.input :phone2 %>
+    <%= f.input :logo_img %>
+    <%= f.input :description %>
+    <%= f.input :info1 %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

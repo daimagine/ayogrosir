@@ -23,14 +23,14 @@ NuAyogrosir::Application.routes.draw do
   # products routes
   resources :products, :only => [:index, :show]
 
+  # manage admin (backend)
+  match :admin, :to => 'admin/dashboard#index'
+  namespace :admin do
+    resources :markets, :stores, :products
+  end
+
   # manage static pages
   get '/:slug' => 'pages#index', as: 'page'
-
-  # manage admin (backend)
-  match :admin, :to => 'admin/dashboards#index'
-  namespace :admin do
-    resources :users, :markets, :stores, :products
-  end
 
   authenticated :user do
     root :to => 'home#index'

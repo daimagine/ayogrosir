@@ -1,0 +1,45 @@
+<h1>Listing admin_markets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Street1</th>
+    <th>Street2</th>
+    <th>City</th>
+    <th>Postal code</th>
+    <th>Phone1</th>
+    <th>Phone2</th>
+    <th>Logo img</th>
+    <th>Description</th>
+    <th>Info1</th>
+    <th>Page view</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_markets.each do |admin_market| %>
+  <tr>
+    <td><%= admin_market.name %></td>
+    <td><%= admin_market.street1 %></td>
+    <td><%= admin_market.street2 %></td>
+    <td><%= admin_market.city %></td>
+    <td><%= admin_market.postal_code %></td>
+    <td><%= admin_market.phone1 %></td>
+    <td><%= admin_market.phone2 %></td>
+    <td><%= admin_market.logo_img %></td>
+    <td><%= admin_market.description %></td>
+    <td><%= admin_market.info1 %></td>
+    <td><%= admin_market.page_view %></td>
+    <td><%= admin_market.status %></td>
+    <td><%= link_to 'Show', admin_market %></td>
+    <td><%= link_to 'Edit', edit_admin_market_path(admin_market) %></td>
+    <td><%= link_to 'Destroy', admin_market, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Market', new_admin_market_path %>
