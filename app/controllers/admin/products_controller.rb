@@ -2,7 +2,7 @@ class Admin::ProductsController < AdminController
   # GET /admin/products
   # GET /admin/products.json
   def index
-    @admin_products = Product.all
+    @admin_products = Product.includes(:store).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,14 +40,14 @@ class Admin::ProductsController < AdminController
   # POST /admin/products
   # POST /admin/products.json
   def create
-    @admin_product = Product.new(params[:admin_product])
+    @admin_product = Product.new(params[:product])
 
     respond_to do |format|
       if @admin_product.save
-        format.html { redirect_to @admin_product, notice: 'Product was successfully created.' }
+        format.html { redirect_to admin_product_path(@admin_product), notice: 'Product was successfully created.' }
         format.json { render json: @admin_product, status: :created, location: @admin_product }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @admin_product.errors, status: :unprocessable_entity }
       end
     end
@@ -59,11 +59,11 @@ class Admin::ProductsController < AdminController
     @admin_product = Product.find(params[:id])
 
     respond_to do |format|
-      if @admin_product.update_attributes(params[:admin_product])
-        format.html { redirect_to @admin_product, notice: 'Product was successfully updated.' }
+      if @admin_product.update_attributes(params[:product])
+        format.html { redirect_to admin_product_path(@admin_product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @admin_product.errors, status: :unprocessable_entity }
       end
     end

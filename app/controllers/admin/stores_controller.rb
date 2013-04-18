@@ -2,7 +2,7 @@ class Admin::StoresController < AdminController
   # GET /admin/stores
   # GET /admin/stores.json
   def index
-    @admin_stores = Store.all
+    @admin_stores = Store.includes(:market).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,14 +40,14 @@ class Admin::StoresController < AdminController
   # POST /admin/stores
   # POST /admin/stores.json
   def create
-    @admin_store = Store.new(params[:admin_store])
+    @admin_store = Store.new(params[:store])
 
     respond_to do |format|
       if @admin_store.save
-        format.html { redirect_to @admin_store, notice: 'Store was successfully created.' }
+        format.html { redirect_to admin_store_path(@admin_store), notice: 'Store was successfully created.' }
         format.json { render json: @admin_store, status: :created, location: @admin_store }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @admin_store.errors, status: :unprocessable_entity }
       end
     end
@@ -59,11 +59,11 @@ class Admin::StoresController < AdminController
     @admin_store = Store.find(params[:id])
 
     respond_to do |format|
-      if @admin_store.update_attributes(params[:admin_store])
-        format.html { redirect_to @admin_store, notice: 'Store was successfully updated.' }
+      if @admin_store.update_attributes(params[:store])
+        format.html { redirect_to admin_store_path(@admin_store), notice: 'Store was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @admin_store.errors, status: :unprocessable_entity }
       end
     end

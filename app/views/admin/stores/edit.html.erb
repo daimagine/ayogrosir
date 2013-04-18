@@ -1,6 +1,22 @@
-<h1>Editing admin_store</h1>
 
-<%= render 'form' %>
+  <article class="module width_full">
+    <header><h3><%= @admin_store.name %></h3></header>
 
-<%= link_to 'Show', @admin_store %> |
-<%= link_to 'Back', admin_stores_path %>
+    <div class="">
+      <div class="module_content">
+			
+			<%= simple_form_for(@admin_store, :url => admin_store_path) do |f| %>
+				<%= render :partial => 'form', :locals => { :f => f } %>
+			<% end %>	
+
+		  <div class="message form-actions">
+		    <p>
+		      <%= link_to 'Show', admin_store_path(@admin_store) %> |
+					<%= link_to 'Back', admin_stores_path %>
+		    </p>
+		  </div>
+
+      </div>
+    </div>
+
+  </article><!-- end of stats article -->

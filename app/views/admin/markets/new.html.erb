@@ -1,5 +1,23 @@
-<h1>New admin_market</h1>
 
-<%= render 'form' %>
+<article class="module width_full">
+  <header><h3>New Market</h3></header>
 
-<%= link_to 'Back', admin_markets_path %>
+  <div class="">
+    <div class="module_content">
+		
+		<%= simple_form_for(@admin_market, :url => admin_markets_path, :method => 'POST') do |f| %>
+			<%= render :partial => 'form', :locals => { :f => f } %>
+		<% end %>	
+
+	  <div class="message form-actions">
+	    <p>
+	      <%= link_to 'Back', admin_markets_path %>
+	    </p>
+	  </div>
+
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+

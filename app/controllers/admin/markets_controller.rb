@@ -40,14 +40,14 @@ class Admin::MarketsController < AdminController
   # POST /admin/markets
   # POST /admin/markets.json
   def create
-    @admin_market = Market.new(params[:admin_market])
+    @admin_market = Market.new(params[:market])
 
     respond_to do |format|
       if @admin_market.save
-        format.html { redirect_to @admin_market, notice: 'Market was successfully created.' }
+        format.html { redirect_to admin_market_path(@admin_market), notice: 'Market was successfully created.' }
         format.json { render json: @admin_market, status: :created, location: @admin_market }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @admin_market.errors, status: :unprocessable_entity }
       end
     end
@@ -59,11 +59,11 @@ class Admin::MarketsController < AdminController
     @admin_market = Market.find(params[:id])
 
     respond_to do |format|
-      if @admin_market.update_attributes(params[:admin_market])
-        format.html { redirect_to @admin_market, notice: 'Market was successfully updated.' }
+      if @admin_market.update_attributes(params[:market])
+        format.html { redirect_to admin_market_path(@admin_market), notice: 'Market was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @admin_market.errors, status: :unprocessable_entity }
       end
     end

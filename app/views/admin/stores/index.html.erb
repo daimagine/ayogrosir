@@ -1,43 +1,39 @@
-<h1>Listing admin_stores</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Street1</th>
-    <th>Street2</th>
-    <th>City</th>
-    <th>Postal code</th>
-    <th>Phone1</th>
-    <th>Phone2</th>
-    <th>Logo img</th>
-    <th>Description</th>
-    <th>Info1</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<article class="module width_full">
+<header><h3 class="tabs_involved">List Stores</h3></header>
 
-<% @admin_stores.each do |admin_store| %>
-  <tr>
-    <td><%= admin_store.name %></td>
-    <td><%= admin_store.street1 %></td>
-    <td><%= admin_store.street2 %></td>
-    <td><%= admin_store.city %></td>
-    <td><%= admin_store.postal_code %></td>
-    <td><%= admin_store.phone1 %></td>
-    <td><%= admin_store.phone2 %></td>
-    <td><%= admin_store.logo_img %></td>
-    <td><%= admin_store.description %></td>
-    <td><%= admin_store.info1 %></td>
-    <td><%= admin_store.status %></td>
-    <td><%= link_to 'Show', admin_store %></td>
-    <td><%= link_to 'Edit', edit_admin_store_path(admin_store) %></td>
-    <td><%= link_to 'Destroy', admin_store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Store', new_admin_store_path %>
+<div class="tab_container">
+  <table class="tablesorter" cellspacing="0"> 
+    <thead> 
+        <tr> 
+            <th>Market</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Logo img</th>
+            <th>Info1</th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+      <% @admin_stores.each do |admin_store| %>
+        <tr> 
+            <td><%= admin_store.market && admin_store.market.name %></td>
+            <td><%= admin_store.name %></td>
+            <td><%= admin_store.city %></td>
+            <td><%= admin_store.logo_img %></td>
+            <td><%= admin_store.info1 %></td>
+            <td>
+              <%= link_to 'Show', admin_store_path(admin_store) %> | 
+              <%= link_to 'Edit', edit_admin_store_path(admin_store) %> |
+              <%= link_to 'Destroy', admin_store_path(admin_store), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        </tr> 
+      <% end %>
+    </tbody> 
+  </table>
+  <footer>
+    <div class="submit_link">
+      <%= link_to 'New Store', new_admin_store_path%>
+    </div>
+  </footer>
+</div>

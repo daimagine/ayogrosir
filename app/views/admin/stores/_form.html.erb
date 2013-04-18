@@ -1,21 +1,43 @@
-<%= simple_form_for(@admin_store) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="message">
+    <%= f.error_notification %>
+  </div>
+  <div class="message">
     <%= f.input :name %>
+  </div>
+  <div class="message">
     <%= f.input :street1 %>
+  </div>
+  <div class="message">
     <%= f.input :street2 %>
+  </div>
+  <div class="message">
     <%= f.input :city %>
+  </div>
+  <div class="message">
     <%= f.input :postal_code %>
+  </div>
+  <div class="message">
     <%= f.input :phone1 %>
+  </div>
+  <div class="message">
     <%= f.input :phone2 %>
+  </div>
+  <div class="message">
     <%= f.input :logo_img %>
+  </div>
+  <div class="message">
     <%= f.input :description %>
+  </div>
+  <div class="message">
     <%= f.input :info1 %>
+  </div>
+  <div class="message">
     <%= f.input :status %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="message form-actions">
+    <p>
+      <%= f.button :submit %>
+    </p>
   </div>
-<% end %>
