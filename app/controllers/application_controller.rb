@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :initialize_menus
   before_filter :current_market
   before_filter :show_default_market, :pageview_increment
   before_filter :initialize_app_counter
@@ -8,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
+  end
+
+  def initialize_menus
+  @navigation ||= Menu.all
   end
 
   def initialize_app_counter
@@ -30,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_store
-    if check_root?
+    if check_root? || check_pages?
       @latest_stores ||= Store.latest.limit(5)
       @newest_stores ||= Store.newest.limit(5)
       @popular_stores ||= Store.popular.limit(5)
@@ -41,6 +46,10 @@ class ApplicationController < ActionController::Base
 
   def check_root?
     params[:controller].eql?('home') and params[:action].eql?('index')
+  end
+
+  def check_pages?
+    params[:controller].eql?('pages')
   end
 
   def show_default_market

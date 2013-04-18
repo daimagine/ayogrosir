@@ -51,10 +51,13 @@
               <%= link_to 'SIGN IN', new_user_session_path %> | 
               <%= link_to 'SIGN UP', new_user_registration_path %>
 
-              <form class="top-login-form">
-                  <input class="input-medium top-login-input" type="text" placeholder="Username">
-                  <input class="input-medium top-login-input" type="text" placeholder="Password">
-              </form> <!-- end top login form --> 
+              <%= form_for("user", :url => user_session_path, :html => { :class => 'top-login-form' } ) do |f| %>
+                <%= f.text_field :email, :placeholder => 'username', :class => 'input-medium top-login-input' %>
+                <%= f.password_field :password, :placeholder => 'password', :class => 'input-medium top-login-input' %>
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+              <% end %>
+
+              <!-- end top login form --> 
             <% end %>
 
           </div> <!-- end top login box -->
@@ -109,7 +112,7 @@
           </div>
           <!-- End of Core Content -->
 
-          <% if current_page?(root_url) %>
+          <% if current_page?(root_url) || controller_name == 'pages' %>
             <aside class="span2 sidebar-update">
               <%= render 'layouts/sidebar' %>
             </aside> <!-- end sidebar -->

@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
 	def index
 		if @page && ! @page.nil?
+			
 		else
 			flash[:error] = 'The page you requested is not found'
 			redirect_to :root

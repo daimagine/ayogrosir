@@ -2,8 +2,16 @@
 
   <div class="span10 page-content">
 
-    <h3><%= @page.name %></h3>
-    <%= @page.content %>
+  	<% if @page.static? %>
+
+  		<%= render @page.template %>
+
+  	<% else %>
+
+	    <h3><%= @page.name %></h3>
+	    <%= @page.content %>
+
+	  <% end %>	
 
   </div>
 

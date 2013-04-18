@@ -1,5 +1,13 @@
 
-      <ul class="breadcrumb">
-        <li class="active">Home<span class="divider">/</span></li>
-        <li><a href="#">Show</a><span class="divider">/</span></li>
-      </ul> <!-- breadcrumb -->
+<ul class="breadcrumb">
+  <li class="active">
+  	Home
+  	<span class="divider">/</span>
+  </li>
+  <% if controller_name != 'home' %>
+  	<li>
+  		<a href="#"><%= controller_name %></a>
+  		<span class="divider">/</span>
+  	</li>
+  <% end %>
+</ul> <!-- breadcrumb -->

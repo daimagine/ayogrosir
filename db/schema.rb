@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410202754) do
+ActiveRecord::Schema.define(:version => 20130418031401) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,14 +45,27 @@ ActiveRecord::Schema.define(:version => 20130410202754) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "menus", :force => true do |t|
+    t.string   "name",                          :null => false
+    t.string   "url"
+    t.integer  "sequence",   :default => 0
+    t.integer  "parent_id",  :default => 0
+    t.string   "status",     :default => "A"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "parent",     :default => false
+  end
+
   create_table "pages", :force => true do |t|
-    t.string   "name",                        :null => false
-    t.string   "slug",                        :null => false
-    t.text     "content",                     :null => false
+    t.string   "name",                          :null => false
+    t.string   "slug",                          :null => false
+    t.text     "content",                       :null => false
     t.integer  "page_view",  :default => 0
     t.string   "status",     :default => "A"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "static",     :default => false
+    t.string   "template"
   end
 
   create_table "product_categories", :id => false, :force => true do |t|
