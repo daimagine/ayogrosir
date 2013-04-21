@@ -13,8 +13,10 @@
 
         <i>*Daftarkan email anda disini</i>
         <div class="input-append">
-          <input class="span3" type="text" placeholder="Masukan email anda disini..">
-          <button class="btn top-input" type="button">DAFTAR</button>
+          <form action="/subscribe" method="post" id="FormSubscriptions">
+            <input class="span3" type="text" name="email" placeholder="Masukan email anda disini..">
+            <button class="btn top-input" type="button" onclick="document.forms.FormSubscriptions.submit()">DAFTAR</button>
+          </form>
         </div>
 
       </div>
@@ -35,8 +37,10 @@
 
         <i>*Ketik disini untuk pencarian khusus</i>
         <div class="input-append">
-          <input class="span3" type="text" placeholder="Ketik kata pencarian anda disini..">
-          <button class="btn top-input" type="button">SEARCH</button>
+          <%= form_for @search, :url => { :controller => "stores", :action => "index" }, :method => 'get', :html => { :id => "FormSearchStore", :name => "FormSearchStore" } do |f| %>
+            <%= f.text_field :keywords, :class => 'span3', :placeholder => 'Ketik kata pencarian anda disini..' %>
+            <button class="btn top-input" type="button" onclick="document.forms.FormSearchStore.submit()">SEARCH</button>
+          <% end %>
         </div>
 
       </div>

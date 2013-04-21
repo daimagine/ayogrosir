@@ -80,4 +80,32 @@ class Admin::MarketsController < AdminController
       format.json { head :no_content }
     end
   end
+
+  # add store to market
+  def new_store
+    @admin_market = Market.find(params[:id])
+    @stores = Store.where('id not in ?', @admin_market.stores.collect(&:id))
+  end
+
+  def create_store
+    @admin_market = Market.find(params[:id])
+    store = Store.find(params[:store_id])
+
+    @admin_market.stores << store unless @admin_market.stores.include? store
+    if @admin_market.stores.include? store
+      flash[:success] = 'Success add store to market'
+    end
+  end
+
+  # remove store from market
+  def remove_store
+    @admin_market = Market.find(params[:id])
+    store = Store.find(params[:store_id])
+    
+    @admin_market.stores.delete(store) if @admin_market.stores.include? store
+    unless @admin_market.stores.include? store
+      flash[:success] = 'Success add store to market'
+    end
+  end
+
 end

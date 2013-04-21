@@ -56,6 +56,12 @@ class ApplicationController < ActionController::Base
   	logger.info "Default market is #{@current_market.name.upcase}"
   end
 
+  # redirect to dashboard after login
+  def after_sign_in_path_for(resource)
+    flash[:success] = 'You have been successfully signed in'
+    admin_path
+  end
+
   def pageview_increment
     ipaddr = request.remote_ip
     logger.info "incoming page view from ip #{ipaddr}"
