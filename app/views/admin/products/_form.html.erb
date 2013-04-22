@@ -1,6 +1,17 @@
 
+  
   <div class="message">
     <%= f.error_notification %>
+  </div>
+  <div class="message">
+    <div class="control-group string required store_name">
+      <label class="string required control-label" for="store_name">
+        Store
+      </label>
+      <div class="controls">
+        <%= f.select :store_id, @stores.map {|r| [r.name,r.id] } %>
+      </div>
+    </div>
   </div>
   <div class="message">
     <%= f.input :name %>
@@ -16,9 +27,6 @@
   </div>
   <div class="message">
     <%= f.input :info1 %>
-  </div>
-  <div class="message">
-    <%= f.input :status %>
   </div>
 
   <div class="message form-actions">

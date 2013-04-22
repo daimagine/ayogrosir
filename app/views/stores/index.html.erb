@@ -31,7 +31,7 @@
 					<h5>Kategori Barang</h5>
 				</div>
 				<div class="span9">
-					<%= f.collection_select :category_id, Category.where('type = ?', 'Store'), :id, :name, {}, {:class => 'span9'} %>
+					<%= f.collection_select :category_id, Category.where('cat_type = ?', 'Store'), :id, :name, {}, {:class => 'span9'} %>
         </div>
 			</div> <!-- end of row set three -->
 

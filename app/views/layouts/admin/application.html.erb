@@ -88,6 +88,12 @@
 				<li class="icn_settings"><a href="#">Options</a></li>
 				<li class="icn_security"><a href="#">Security</a></li>
 			-->
+			<li class="icn_new_article">
+				<%= link_to 'Create Category', new_admin_category_path %>
+			</li>
+			<li class="icn_categories">
+				<%= link_to 'List Categories', admin_categories_path %>
+			</li>
 			<li class="icn_jump_back"><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
 		</ul>
 

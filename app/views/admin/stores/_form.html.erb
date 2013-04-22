@@ -2,6 +2,29 @@
   <div class="message">
     <%= f.error_notification %>
   </div>
+
+  <div class="message">
+    <div class="control-group string required store_name">
+      <label class="string required control-label" for="store_name">
+        Market
+      </label>
+      <div class="controls">
+        <%= f.select :market_id, @markets.map {|r| [r.name,r.id] } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="message">
+    <div class="control-group">
+      <label class="control-label">
+        Category
+      </label>
+      <div class="controls">
+        <%= f.collection_select :category_ids, Category.where(:cat_type => 'Store'), :id, :name, {}, :multiple => true  %>
+      </div>
+    </div>
+  </div>
+
   <div class="message">
     <%= f.input :name %>
   </div>
@@ -31,9 +54,6 @@
   </div>
   <div class="message">
     <%= f.input :info1 %>
-  </div>
-  <div class="message">
-    <%= f.input :status %>
   </div>
 
   <div class="message form-actions">

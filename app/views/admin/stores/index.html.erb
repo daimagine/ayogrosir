@@ -7,6 +7,7 @@
     <thead> 
         <tr> 
             <th>Market</th>
+            <th>Category</th>
             <th>Name</th>
             <th>City</th>
             <th>Logo img</th>
@@ -18,6 +19,7 @@
       <% @admin_stores.each do |admin_store| %>
         <tr> 
             <td><%= admin_store.market && admin_store.market.name %></td>
+            <td><%= admin_store.categories && admin_store.categories.first &&  admin_store.categories.collect(&:name).join(", ") %></td>
             <td><%= admin_store.name %></td>
             <td><%= admin_store.city %></td>
             <td><%= admin_store.logo_img %></td>

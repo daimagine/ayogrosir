@@ -2,7 +2,7 @@ class Admin::StoresController < AdminController
   # GET /admin/stores
   # GET /admin/stores.json
   def index
-    @admin_stores = Store.includes(:market).all
+    @admin_stores = Store.includes(:market, :categories).all
 
     respond_to do |format|
       format.html # index.html.erb

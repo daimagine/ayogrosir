@@ -25,6 +25,7 @@ class Admin::ProductsController < AdminController
   # GET /admin/products/new.json
   def new
     @admin_product = Product.new
+    @stores = Store.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class Admin::ProductsController < AdminController
   # GET /admin/products/1/edit
   def edit
     @admin_product = Product.find(params[:id])
+    @stores = Store.all
   end
 
   # POST /admin/products

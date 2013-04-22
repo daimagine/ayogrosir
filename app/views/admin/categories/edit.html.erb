@@ -1,0 +1,49 @@
+
+  <article class="module width_full">
+    <header><h3><%= @admin_category.name %></h3></header>
+
+    <div class="">
+      <div class="module_content">
+			
+			<%= simple_form_for(@admin_category, :url => admin_category_path) do |f| %>
+			
+				<div class="control-group">
+		      <label class="control-label">
+		        Type
+		      </label>
+		      <div class="controls">
+		        <select id="category_type" name="category[cat_type]">
+		        	<option value="Store" <%= 'selected="selected"' if @admin_category.cat_type == 'Store' %> >Store</option>
+							<option value="Product" <%= 'selected="selected"' if @admin_category.cat_type == 'Product' %> >Product</option>
+						</select>
+		      </div>
+		    </div>
+
+				<div class="message">
+			    <div class="control-group">
+			    	<label class="control-label">Name</label>
+			    	<div class="controls">
+			    		<input class="" id="category_name" name="category[name]" size="50" type="text" value="<%= @admin_category.name %>">
+			    	</div>
+			    </div>
+			  </div>
+
+			  <div class="message form-actions">
+			    <p>
+			      <input class="btn" name="commit" type="submit" value="Update Category">
+			    </p>
+			  </div>
+
+			<% end %>
+
+		  <div class="message form-actions">
+		    <p>
+		      <%= link_to 'Show', admin_category_path(@admin_category) %> |
+					<%= link_to 'Back', admin_categories_path %>
+		    </p>
+		  </div>
+
+      </div>
+    </div>
+
+  </article><!-- end of stats article -->

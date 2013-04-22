@@ -33,7 +33,7 @@ NuAyogrosir::Application.routes.draw do
         delete 'remove_store/:store_id', :action => 'remove_store', :as => 'remove_store'
       end
     end
-    resources :stores, :products
+    resources :categories, :stores, :products
   end
 
   # manage static pages

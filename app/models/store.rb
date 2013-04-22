@@ -3,9 +3,10 @@ class Store < ActiveRecord::Base
 	
 	attr_accessible :name, :street1, :street2, :city, :postal_code,
 		:phone1, :phone2, :logo_img, :description, :info1, :page_view,
-		:status
+		:status, :market_id, :category_ids
 
 	validates :name, presence: true
+	validates :market_id, presence: true
 
 	belongs_to :market
 	has_many :products, :dependent => :destroy

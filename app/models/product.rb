@@ -2,10 +2,11 @@ class Product < ActiveRecord::Base
 	include Timelinable
 
 	attr_accessible :name, :price, :logo_img, :description, 
-		:info1, :page_view, :status
+		:info1, :page_view, :status, :store_id
 
 	validates :name, presence: true
 	validates :price, presence: true
+	validates :store_id, presence: true
 
 	belongs_to :store
 	has_many :counters, :as => :resource

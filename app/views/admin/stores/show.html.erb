@@ -6,6 +6,13 @@
       <div class="message">
         <p id="notice"><%= notice %></p>
       </div>
+
+      <div class="message">
+        <p>
+          <b>Category: </b>
+          <%= @admin_store.categories && @admin_store.categories.first && @admin_store.categories.collect(&:name).join(", ") %>
+        </p>
+      </div>
       <div class="message">
         <p>
           <b>Street1:</b>
