@@ -22,7 +22,7 @@
             <td><%= admin_store.categories && admin_store.categories.first &&  admin_store.categories.collect(&:name).join(", ") %></td>
             <td><%= admin_store.name %></td>
             <td><%= admin_store.city %></td>
-            <td><%= admin_store.logo_img %></td>
+            <td><%= image_tag admin_store.pic.url(:thumb) %></td>
             <td><%= admin_store.info1 %></td>
             <td>
               <%= link_to 'Show', admin_store_path(admin_store) %> | 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422085710) do
+ActiveRecord::Schema.define(:version => 20130422112442) do
 
   create_table "advertises", :force => true do |t|
     t.string   "name"
@@ -87,16 +87,20 @@ ActiveRecord::Schema.define(:version => 20130422085710) do
 
   create_table "products", :force => true do |t|
     t.integer  "store_id"
-    t.string   "name",                                                      :null => false
-    t.decimal  "price",       :precision => 14, :scale => 2,                :null => false
+    t.string   "name",                                                           :null => false
+    t.decimal  "price",            :precision => 14, :scale => 2,                :null => false
     t.string   "logo_img"
     t.text     "description"
     t.text     "info1"
-    t.integer  "page_view",                                  :default => 0
+    t.integer  "page_view",                                       :default => 0
     t.string   "status"
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
     t.float    "weight"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -133,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20130422085710) do
 
   create_table "stores", :force => true do |t|
     t.integer  "market_id"
-    t.string   "name",                       :null => false
+    t.string   "name",                            :null => false
     t.string   "street1"
     t.string   "street2"
     t.string   "city"
@@ -143,11 +147,15 @@ ActiveRecord::Schema.define(:version => 20130422085710) do
     t.string   "logo_img"
     t.text     "description"
     t.text     "info1"
-    t.integer  "page_view",   :default => 0
+    t.integer  "page_view",        :default => 0
     t.string   "status"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "info2"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|

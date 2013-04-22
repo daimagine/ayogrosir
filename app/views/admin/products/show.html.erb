@@ -3,19 +3,18 @@
 
   <div class="">
     <div class="module_content">
+      
       <div class="message">
         <p id="notice"><%= notice %></p>
+      </div>
+
+      <div class="message">
+        <p><%= image_tag @admin_product.pic %></p>
       </div>
       <div class="message">
         <p>
           <b>Price:</b>
           <%= @admin_product.price %>
-        </p>
-      </div>
-      <div class="message">
-        <p>
-          <b>Logo img:</b>
-          <%= @admin_product.logo_img %>
         </p>
       </div>
       <div class="message">

@@ -5,7 +5,9 @@
     <div class="">
       <div class="module_content">
 			
-			<%= simple_form_for(@admin_product, :url => admin_product_path) do |f| %>
+			<%= simple_form_for(@admin_product, :url => admin_product_path,
+					:html => { :multipart => true } ) do |f| %>
+					
 				<%= render :partial => 'form', :locals => { :f => f } %>
 			<% end %>	
 

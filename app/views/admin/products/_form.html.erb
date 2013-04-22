@@ -20,7 +20,12 @@
     <%= f.input :price %>
   </div>
   <div class="message">
-    <%= f.input :logo_img %>
+    <label class="string required control-label" for="product_pic">
+      Picture
+    </label>
+    <div class="controls">
+      <%= f.file_field :pic %>
+    </div>
   </div>
   <div class="message">
     <%= f.input :description %>

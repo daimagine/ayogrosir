@@ -2,7 +2,7 @@
 <div class="row profile-toko">
 
 <div class="span3 logo-toko">
-  <%= image_tag @store.logo_img, class: "img-polaroid", alt: "photo" %>
+  <%= image_tag @store.pic, class: "img-polaroid", alt: "photo" %>
 </div> <!-- end logo toko -->
 
 <div class="span4 desc-toko">
@@ -47,7 +47,7 @@
 <% @store.products && @store.products.latest.each do |product| %>
 
   <div class="span2 market">
-    <%= link_to image_tag(product.logo_img), product %>
+    <%= link_to image_tag(product.pic), product %>
     <p>
       <%= product.name %><br><span>Rp <%= number_with_precision(product.price, :precision => 2) %></span>
     </p>

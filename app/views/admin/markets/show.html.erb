@@ -77,3 +77,46 @@
   </div>
 
 </article><!-- end of stats article -->
+
+
+
+<article class="module width_full">
+<header><h3 class="tabs_involved">List Stores</h3></header>
+
+<div class="tab_container">
+  <table class="tablesorter" cellspacing="0"> 
+    <thead> 
+        <tr> 
+            <th>Market</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Logo img</th>
+            <th>Info1</th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+      <% @admin_market.stores.each do |admin_store| %>
+        <tr> 
+            <td><%= admin_store.market && admin_store.market.name %></td>
+            <td><%= admin_store.categories && admin_store.categories.first &&  admin_store.categories.collect(&:name).join(", ") %></td>
+            <td><%= admin_store.name %></td>
+            <td><%= admin_store.city %></td>
+            <td><%= admin_store.logo_img %></td>
+            <td><%= admin_store.info1 %></td>
+            <td>
+              <%= link_to 'Show', admin_store_path(admin_store) %> | 
+              <%= link_to 'Edit', edit_admin_store_path(admin_store) %> |
+              <%= link_to 'Destroy', admin_store_path(admin_store), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        </tr> 
+      <% end %>
+    </tbody> 
+  </table>
+  <footer>
+    <div class="submit_link">
+      <%= link_to 'New Store', new_admin_store_path%>
+    </div>
+  </footer>
+</div>

@@ -20,7 +20,7 @@
             <td><%= admin_product.store && admin_product.store.name %></td>
             <td><%= admin_product.name %></td>
             <td><%= admin_product.price %></td>
-            <td><%= admin_product.logo_img %></td>
+            <td><%= image_tag admin_product.pic.url(:thumb) %></td>
             <td><%= admin_product.info1 %></td>
             <td>
               <%= link_to 'Show', admin_product_path(admin_product) %> | 
@@ -33,7 +33,7 @@
   </table>
   <footer>
     <div class="submit_link">
-      <%= link_to 'New Store', new_admin_product_path%>
+      <%= link_to 'New Product', new_admin_product_path%>
     </div>
   </footer>
 </div>

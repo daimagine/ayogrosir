@@ -47,7 +47,12 @@
     <%= f.input :phone2 %>
   </div>
   <div class="message">
-    <%= f.input :logo_img %>
+    <label class="string required control-label" for="store_pic">
+      Picture
+    </label>
+    <div class="controls">
+      <%= f.file_field :pic %>
+    </div>
   </div>
   <div class="message">
     <%= f.input :description %>

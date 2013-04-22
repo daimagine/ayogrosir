@@ -8,6 +8,9 @@
       </div>
 
       <div class="message">
+        <p><%= image_tag @admin_store.pic %></p>
+      </div>
+      <div class="message">
         <p>
           <b>Category: </b>
           <%= @admin_store.categories && @admin_store.categories.first && @admin_store.categories.collect(&:name).join(", ") %>
@@ -51,12 +54,6 @@
       </div>
       <div class="message">
         <p>
-          <b>Logo img:</b>
-          <%= @admin_store.logo_img %>
-        </p>
-      </div>
-      <div class="message">
-        <p>
           <b>Description:</b>
           <%= @admin_store.description %>
         </p>
@@ -84,3 +81,43 @@
   </div>
 
 </article><!-- end of stats article -->
+
+
+<article class="module width_full">
+<header><h3 class="tabs_involved">List Products</h3></header>
+
+<div class="tab_container">
+  <table class="tablesorter" cellspacing="0"> 
+    <thead> 
+        <tr>
+            <th>Store</th> 
+            <th>Name</th>
+            <th>Price</th>
+            <th>Logo img</th>
+            <th>Info1</th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+      <% @admin_store.products.each do |admin_product| %>
+        <tr> 
+            <td><%= admin_product.store && admin_product.store.name %></td>
+            <td><%= admin_product.name %></td>
+            <td><%= admin_product.price %></td>
+            <td><%= admin_product.logo_img %></td>
+            <td><%= admin_product.info1 %></td>
+            <td>
+              <%= link_to 'Show', admin_product_path(admin_product) %> | 
+              <%= link_to 'Edit', edit_admin_product_path(admin_product) %> |
+              <%= link_to 'Destroy', admin_product_path(admin_product), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        </tr> 
+      <% end %>
+    </tbody> 
+  </table>
+  <footer>
+    <div class="submit_link">
+      <%= link_to 'New Product', new_admin_product_path%>
+    </div>
+  </footer>
+</div>
