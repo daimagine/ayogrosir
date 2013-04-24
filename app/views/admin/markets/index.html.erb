@@ -8,8 +8,8 @@
         <tr> 
             <th>Name</th>
             <th>City</th>
-            <th>Logo img</th>
             <th>Info1</th>
+            <th>Markets</th>
             <th></th>
         </tr> 
     </thead> 
@@ -18,8 +18,8 @@
         <tr> 
             <td><%= admin_market.name %></td>
             <td><%= admin_market.city %></td>
-            <td><%= admin_market.logo_img %></td>
             <td><%= admin_market.info1 %></td>
+            <td><%= admin_market.stores.size %> </td>
             <td>
               <%= link_to 'Show', admin_market_path(admin_market) %> | 
               <%= link_to 'Edit', edit_admin_market_path(admin_market) %> |

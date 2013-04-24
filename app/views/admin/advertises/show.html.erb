@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @admin_advertise.name %>
+</p>
+
+<p>
+  <b>Pic:</b>
+  <%= @admin_advertise.pic %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_advertise_path(@admin_advertise) %> |
+<%= link_to 'Back', admin_advertises_path %>

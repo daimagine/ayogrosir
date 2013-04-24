@@ -1,0 +1,22 @@
+
+  <article class="module width_full">
+    <header><h3>Subscription Edit</h3></header>
+
+    <div class="">
+      <div class="module_content">
+			
+			<%= simple_form_for(@subscriber, :url => subscriber_admin_members_path) do |f| %>
+				<%= render :partial => 'subscriber_form', :locals => { :f => f } %>
+			<% end %>	
+
+		  <div class="message form-actions">
+		    <p>
+		      <%= link_to 'Show', subscriber_admin_members_path(@subscriber) %> |
+					<%= link_to 'Back', admin_members_path %>
+		    </p>
+		  </div>
+
+      </div>
+    </div>
+
+  </article><!-- end of stats article -->

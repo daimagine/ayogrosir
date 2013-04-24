@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :initialize_menus
+  before_filter :initialize_menus, :initialize_preferences
   before_filter :current_market
   before_filter :show_default_market, :pageview_increment
   before_filter :initialize_app_counter
@@ -11,8 +11,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  def initialize_preferences
+    @preferences ||= Preference.all
+  end
+
   def initialize_menus
-  @navigation ||= Menu.all
+    @navigation ||= Menu.all
   end
 
   def initialize_app_counter

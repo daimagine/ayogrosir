@@ -1,0 +1,54 @@
+
+  
+  <div class="message">
+    <%= f.error_notification %>
+  </div>
+
+  <% if @admin_advertise.pic.exists? %>
+	  <div class="message">
+	  	<%= image_tag @admin_advertise.pic %>
+	  </div>
+	<% end %>
+
+	<% if @resource_type && @resource_type == 'Slider' %>
+	  <%= f.input :adv_type, :as => :hidden, :input_html => { :value => "S" } %>
+    <div class="message">
+	    <p>Slider</p>
+	    <input type="hidden" name="resource" value="<%= @resource_type %>"/>
+	  </div>
+	<% end %>
+
+  <div class="message">
+    <%= f.input :name %>
+  </div>
+
+  <% if @resource_type && @resource_type == 'Slider' %>
+	  <div class="message">
+	    <%= f.input :title %>
+	  </div>
+
+	  <div class="message">
+	    <%= f.input :description %>
+	  </div>
+
+	  <div class="message">
+	    <%= f.input :sequence %>
+	  </div>
+	<% end %>
+
+  <div class="message">
+    <label class="string required control-label" for="product_pic">
+      Picture
+    </label>
+    <div class="controls">
+      <%= f.file_field :pic %>
+    </div>
+  </div>
+
+  <div class="message form-actions">
+    <p>
+      <%= f.button :submit %>
+    </p>
+  </div>
+
+

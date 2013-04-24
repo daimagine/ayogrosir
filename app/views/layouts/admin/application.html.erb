@@ -81,6 +81,13 @@
 				<%= link_to 'List', admin_products_path %>
 			</li>
 		</ul>
+
+		<h3>Members & Subscriptions</h3>
+		<ul class="toggle">
+			<li class="icn_categories">
+				<%= link_to 'List', admin_members_path %>
+			</li>
+		</ul>
 		
 		<h3>Tools</h3>
 		<ul class="toggle">
@@ -88,6 +95,9 @@
 				<li class="icn_settings"><a href="#">Options</a></li>
 				<li class="icn_security"><a href="#">Security</a></li>
 			-->
+			<li class="icn_settings">
+				<%= link_to 'Preferences', admin_preferences_path %>
+			</li>
 			<li class="icn_new_article">
 				<%= link_to 'Create Category', new_admin_category_path %>
 			</li>

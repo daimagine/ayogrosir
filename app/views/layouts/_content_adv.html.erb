@@ -8,7 +8,7 @@
     <% if @banner_top != nil %>
       <div class="span4 adv-banner">
         <a href="#">
-          <%= image_tag @banner_top.image, alt: 'discount' %>
+          <%= image_tag @banner_top.pic.url(:medium), alt: 'discount' %>
         </a>
       </div><!-- end banner -->
     <% end %>
@@ -16,7 +16,7 @@
     <% if @banner_topleft != nil %>
       <div class="span2 adv-banner">
         <a href="#">
-          <%= image_tag @banner_topleft.image, alt: 'discount' %>
+          <%= image_tag @banner_topleft.pic.url(:small), alt: 'discount' %>
         </a>
       </div><!-- end banner -->
     <% end %>
@@ -24,7 +24,7 @@
     <% if @banner_topright != nil %>
       <div class="span2 adv-banner">
         <a href="#">
-          <%= image_tag @banner_topright.image, alt: 'discount' %>
+          <%= image_tag @banner_topright.pic.url(:small), alt: 'discount' %>
         </a>
       </div><!-- end banner -->
     <% end %>

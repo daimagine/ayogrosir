@@ -1,0 +1,61 @@
+
+<article class="module width_half">
+	<header><h3 class="tabs_involved">List Members</h3></header>
+
+	<div class="tab_container">
+	  <table class="tablesorter" cellspacing="0"> 
+	    <thead> 
+	        <tr> 
+	            <th>Name</th>
+	            <th>Email</th>
+	            <th>Subscriptions</th>
+	            <th></th>
+	        </tr> 
+	    </thead> 
+	    <tbody> 
+	      <% @members.each do |member| %>
+	        <tr> 
+	            <td><%= member.name %></td>
+	            <td><%= member.email %></td>
+	            <td><%= member.stores.size %></td>
+	            <td>
+	              <%= link_to 'Show', admin_member_path(member) %> |
+              	<%= link_to 'Destroy', admin_member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+	            </td>
+	        </tr> 
+	      <% end %>
+	    </tbody> 
+	  </table>
+	  <footer>
+	  </footer>
+	</div>
+</article>
+
+
+<article class="module width_half">
+	<header><h3 class="tabs_involved">List Subscribers</h3></header>
+
+	<div class="tab_container">
+	  <table class="tablesorter" cellspacing="0"> 
+	    <thead> 
+	        <tr> 
+	            <th>Email</th>
+	            <th></th>
+	        </tr> 
+	    </thead> 
+	    <tbody> 
+	      <% @subscribers.each do |subscriber| %>
+	        <tr> 
+	            <td><%= subscriber.email %></td>
+	            <td>
+	              <%= link_to 'Show', subscriber_admin_members_path(subscriber) %> |
+              <%= link_to 'Destroy', subscriber_admin_members_path(subscriber), method: :delete, data: { confirm: 'Are you sure?' } %>
+	            </td>
+	        </tr> 
+	      <% end %>
+	    </tbody> 
+	  </table>
+	  <footer>
+	  </footer>
+	</div>
+</article>

@@ -1,5 +1,7 @@
 NuAyogrosir::Application.routes.draw do
   
+  get "members/index"
+
   get "dashboard/index"
 
   devise_for :users
@@ -33,7 +35,29 @@ NuAyogrosir::Application.routes.draw do
         delete 'remove_store/:store_id', :action => 'remove_store', :as => 'remove_store'
       end
     end
+
+    resources :members do 
+      collection do
+        get 'subscriber/:id', :action => 'subscriber_show', :as => 'subscriber'
+        get 'subscriber/:id/edit', :action => 'subscriber_edit', :as => 'edit_subscriber'
+        put 'subscriber/:id', :action => 'subscriber_update', :as => 'subscriber'
+        delete 'subscriber/:id', :action => 'subscriber_destroy', :as => 'subscriber'
+      end
+    end
+
     resources :categories, :stores, :products
+    
+    resources :preferences, :only => [:index] do
+      collection do 
+        put 'save'
+      end
+    end
+        
+    resources :advertises do
+      collection do 
+        
+      end
+    end
   end
 
   # manage static pages

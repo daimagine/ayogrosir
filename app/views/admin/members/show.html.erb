@@ -1,0 +1,62 @@
+<article class="module width_half">
+  <header><h3><%= @member.name %></h3></header>
+
+  <div class="">
+    <div class="module_content">
+      
+      <div class="message">
+        <p id="notice"><%= notice %></p>
+      </div>
+
+      <div class="message">
+        <p>
+          <b>Email:</b>
+          <%= @member.email %>
+        </p>
+      </div>
+
+      <div class="message">
+        <p>
+          <%= link_to 'Edit', edit_admin_member_path(@member) %> |
+          <%= link_to 'Back', admin_members_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+<article class="module width_half">
+  <header><h3 class="tabs_involved">Following</h3></header>
+
+  <% if @member.stores && @member.stores.size > 0 %>
+
+    <div class="tab_container">
+      <table class="tablesorter" cellspacing="0"> 
+        <tbody> 
+          <% @member.stores && @member.stores.each do |store| %>
+            <tr> 
+                <td><%= store.name %></td>
+                <td>
+                  <%= link_to '<i class="icon-thumbs-down"></i> Unfollow'.html_safe, unfollow_store_path(store), class: 'btn btn-info pull-right', method: 'delete' %>
+                </td>
+            </tr> 
+          <% end %>
+        </tbody> 
+      </table>
+      <footer>
+      </footer>
+    </div>
+
+  <% else %>
+
+    <div class="">
+      <div class="module_content">
+        <div class="message">
+          <p>Member is not following any store yet</p>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</article><!-- end of stats article -->

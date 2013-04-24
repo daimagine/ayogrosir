@@ -1,0 +1,27 @@
+<article class="module width_full">
+  <header><h3>Subscriber detail</h3></header>
+
+  <div class="">
+    <div class="module_content">
+      
+      <div class="message">
+        <p id="notice"><%= notice %></p>
+      </div>
+
+      <div class="message">
+        <p>
+          <b>Email:</b>
+          <%= @subscriber.email %>
+        </p>
+      </div>
+
+      <div class="message">
+        <p>
+          <%= link_to 'Edit', edit_subscriber_admin_members_path(@subscriber) %> |
+          <%= link_to 'Back', admin_members_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</article><!-- end of stats article -->

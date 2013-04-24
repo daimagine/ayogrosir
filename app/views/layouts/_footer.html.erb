@@ -18,9 +18,21 @@
   <div class="span3 column">
     <h6>Find Us At</h6>
     <ul class="nav">
-      <li><strong>Twitter.</strong>&nbsp;<a href="#">@AyoGrosir</a></li>
-      <li><strong>FB.</strong>&nbsp;<a href="#">facebook.com/AyoGrosir</a></li>
-      <li><strong>email.</strong>&nbsp;<a href="#">support@ayogrosir.com</a></li>
+      <% @preferences.each do |pref| %>
+        <% if pref.pref_key == 'twitter_username' %>
+          <li>
+            <strong>twitter.</strong>&nbsp;<a href="http://twitter.com/<%= pref.pref_value %>"><%= pref.pref_value %></a>
+          </li>
+        <% elsif pref.pref_key == 'fb_username' %>
+          <li>
+            <strong>fb.</strong>&nbsp;<a href="http://facebook.com/<%= pref.pref_value %>"><%= pref.pref_value %></a>
+          </li>
+        <% elsif pref.pref_key == 'email_support' %>
+          <li>
+            <strong>email.</strong>&nbsp;<a href="mailto:<%= pref.pref_value %>"><%= pref.pref_value %></a>
+          </li>
+        <% end %>  
+      <% end %>
     </ul>
   </div><!-- end column -->
 
@@ -28,12 +40,21 @@
     <h6>Hubungi Kami</h6>
     <ul class="nav">
       <li><strong>Alamat</strong></li>
-      <li>Wisma Grosir</li>
-      <li>Jl. Raya Pasar Senen No. 24</li>
-      <li>Pasar Senen</li>
-      <li>Jakarta Pusat</li>
+      <% @preferences.each do |pref| %>
+        <% if pref.pref_key == 'company_address' %>
+          <%= pref.pref_value.html_safe %>
+          <% break %>
+        <% end %>  
+      <% end %>
+      
       <li>&nbsp;</li>
-      <li><strong>Phone.</strong>&nbsp;021-8435719</li>
+
+      <% @preferences.each do |pref| %>
+        <% if pref.pref_key == 'company_phone' %>
+          <li><strong>Phone.</strong>&nbsp;<%= pref.pref_value %></li>
+          <% break %>
+        <% end %>  
+      <% end %>
     </ul>
   </div><!-- end column -->
 

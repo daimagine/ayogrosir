@@ -1,0 +1,116 @@
+
+<article class="module width_half">
+  <header><h3>Preferences</h3></header>
+
+  <div class="">
+    <div class="module_content">
+		
+		<%= simple_form_for(:settings, :url => save_admin_preferences_path, :method => 'PUT') do |f| %>
+
+		  <div class="message">
+		    <%= f.error_notification %>
+		  </div>
+
+		  <% @preferences.each do |p| %>
+		  	<div class="message">
+			    <div class="message">
+				    <div class="control-group">
+				    	<label class="control-label"><%= p.name %>&nbsp;<%= '(days)' if p.pref_key == 'store_subscription_time' %></label>
+				    	<div class="controls">
+				    		<% if ["company_address"].include?(p.pref_key) %>
+				    			<textarea cols="40" name="settings[<%= p.pref_key %>]" rows="10"><%= p.pref_value %></textarea>
+				    		<% else %>
+				    			<input name="settings[<%= p.pref_key %>]" size="50" type="text" value="<%= p.pref_value %>">
+				    		<% end %>
+				    	</div>
+				    </div>
+				  </div>
+			  </div>
+		  <% end %>
+
+		  <div class="message form-actions">
+		    <p>
+		      <%= f.button :submit %>
+		    </p>
+		  </div>
+
+		<% end %>	
+
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+
+<article class="module width_half">
+	<header><h3 class="tabs_involved">List Banner</h3></header>
+
+	<div class="tab_container">
+	  <table class="tablesorter" cellspacing="0"> 
+	    <thead> 
+	        <tr> 
+	            <th>Name</th>
+	            <th>Image</th>
+	            <th></th>
+	        </tr> 
+	    </thead> 
+	    <tbody> 
+	      <% @advertises.each do |adv| %>
+	      	<% if adv.adv_type.start_with?('B') %>
+		        <tr> 
+		            <td><%= adv.name %></td>
+		            <td><%= image_tag adv.pic.url(:thumb) %></td>
+		            <td>
+		            	<%= link_to 'Edit', edit_admin_advertise_path(adv) %>
+		            </td>
+		        </tr> 
+		      <% end %>
+	      <% end %>
+	    </tbody> 
+	  </table>
+	  <footer>
+	  </footer>
+	</div>
+</article>
+
+<div class="clear"></div>
+
+<article class="module width_full">
+	<header><h3 class="tabs_involved">List Slider</h3></header>
+
+	<div class="tab_container">
+	  <table class="tablesorter" cellspacing="0"> 
+	    <thead> 
+	        <tr> 
+	            <th>Name</th>
+	            <th>Image</th>
+	            <th>Title</th>
+	            <th>Description</th>
+	            <th></th>
+	        </tr> 
+	    </thead> 
+	    <tbody> 
+	      <% @advertises.each do |adv| %>
+	      	<% if adv.adv_type.start_with?('S') %>
+		        <tr> 
+		            <td><%= adv.name %></td>
+		            <td><%= image_tag adv.pic.url(:thumb) %></td>
+		            <td><%= adv.title %></td>
+		            <td><%= truncate(h(adv.description), :length=>200) %></td>
+		            <td>
+		            	<%= link_to 'Edit', edit_admin_advertise_path(adv, :resource => 'Slider') %> |
+             			<%= link_to 'Destroy', edit_admin_advertise_path(adv), method: :delete, data: { confirm: 'Are you sure?' } %>
+		            </td>
+		        </tr> 
+		      <% end %>
+	      <% end %>
+	    </tbody> 
+	  </table>
+	  <footer>
+	    <div class="submit_link">
+	      <%= link_to 'New Slider', new_admin_advertise_path(:resource => 'Slider') %>
+	    </div>
+	  </footer>
+	</div>
+</article>
+
