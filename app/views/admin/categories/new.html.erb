@@ -13,9 +13,18 @@
 		  <div class="message">
 		    <%= f.input :name %>
 		  </div>
-		  <div class="message">
-		    <%= f.input :cat_type %>
-		  </div>
+		  
+			<div class="control-group">
+	      <label class="control-label">
+	        Type
+	      </label>
+	      <div class="controls">
+	        <select id="category_type" name="category[cat_type]">
+	        	<option value="Store" <%= 'selected="selected"' if @admin_category.cat_type == 'Store' %> >Store</option>
+						<option value="Product" <%= 'selected="selected"' if @admin_category.cat_type == 'Product' %> >Product</option>
+					</select>
+	      </div>
+	    </div>
 
 		  <div class="message form-actions">
 		    <p>

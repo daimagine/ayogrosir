@@ -1,0 +1,23 @@
+
+<article class="module width_full">
+  <header><h3>New Email Marketing</h3></header>
+
+  <div class="">
+    <div class="module_content">
+		
+		<%= simple_form_for(@admin_email_marketing, :url => admin_email_marketings_path, :method => 'POST') do |f| %>
+			<%= render :partial => 'form', :locals => { :f => f } %>
+		<% end %>	
+
+	  <div class="message form-actions">
+	    <p>
+	      <%= link_to 'Back', admin_email_marketings_path %>
+	    </p>
+	  </div>
+
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+

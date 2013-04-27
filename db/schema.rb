@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424055936) do
+ActiveRecord::Schema.define(:version => 20130427081150) do
 
   create_table "advertises", :force => true do |t|
     t.string   "name"
@@ -21,12 +21,14 @@ ActiveRecord::Schema.define(:version => 20130424055936) do
     t.string   "adv_type"
     t.string   "status",           :default => "A"
     t.integer  "sequence",         :default => 0
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "pic_file_name"
     t.string   "pic_content_type"
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
+    t.text     "content"
+    t.string   "post_status",      :default => "draft"
   end
 
   create_table "categories", :force => true do |t|

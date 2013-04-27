@@ -82,10 +82,30 @@
 			</li>
 		</ul>
 
+		<h3>Users</h3>
+		<ul class="toggle">
+			<li class="icn_new_article">
+				<%= link_to 'Create', new_admin_user_path %>
+			</li>
+			<li class="icn_categories">
+				<%= link_to 'List', admin_users_path %>
+			</li>
+		</ul>
+
 		<h3>Members & Subscriptions</h3>
 		<ul class="toggle">
 			<li class="icn_categories">
 				<%= link_to 'List', admin_members_path %>
+			</li>
+		</ul>
+		
+		<h3>Email Marketings</h3>
+		<ul class="toggle">
+			<li class="icn_new_article">
+				<%= link_to 'Create', new_admin_email_marketing_path %>
+			</li>
+			<li class="icn_categories">
+				<%= link_to 'List', admin_email_marketings_path %>
 			</li>
 		</ul>
 		

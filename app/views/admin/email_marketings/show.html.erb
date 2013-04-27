@@ -1,0 +1,42 @@
+
+<article class="module width_full">
+  <header><h3><%= @admin_email_marketing.name %></h3></header>
+
+  <div class="">
+    <div class="module_content">
+      <div class="message">
+        <p id="notice"><%= notice %></p>
+      </div>
+      <div class="message">
+        <p>
+          <b>Title:</b>
+          <%= @admin_email_marketing.title %>
+        </p>
+      </div>
+      <div class="message">
+        <p>
+          <%= link_to 'Edit', admin_email_marketing_path(@admin_email_marketing) %> |
+          <%= link_to 'Back', admin_email_marketings_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+
+
+<article class="module width_full">
+  <header><h3>Email Preview</h3></header>
+
+  <div class="">
+    <div class="module_content">
+      <div class="message">
+        <div class="emailPreview">
+        	<%= @admin_email_marketing.content && @admin_email_marketing.content.html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</article><!-- end of stats article -->

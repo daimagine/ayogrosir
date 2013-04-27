@@ -1,7 +1,7 @@
 class Advertise < ActiveRecord::Base
 	include Timelinable
 
-  attr_accessible :description, :image, :name, :sequence, :status, :title, :adv_type, :pic
+  attr_accessible :description, :image, :name, :sequence, :status, :title, :adv_type, :pic, :content
 
   validates :name, presence: true
 

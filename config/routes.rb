@@ -45,7 +45,13 @@ NuAyogrosir::Application.routes.draw do
       end
     end
 
-    resources :categories, :stores, :products
+    resources :categories, :stores, :products, :users
+
+    resources :email_marketings do
+      member do
+        post 'blast', :as => 'publish'
+      end
+    end
     
     resources :preferences, :only => [:index] do
       collection do 

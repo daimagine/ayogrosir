@@ -1,0 +1,36 @@
+
+<article class="module width_half">
+  <header><h3 class="tabs_involved">List Users</h3></header>
+
+  <div class="tab_container">
+    <table class="tablesorter" cellspacing="0"> 
+      <thead> 
+          <tr> 
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subscriptions</th>
+              <th></th>
+          </tr> 
+      </thead> 
+      <tbody> 
+        <% @users.each do |user| %>
+          <tr> 
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.stores.size %></td>
+              <td>
+                <%= link_to 'Show', admin_user_path(user) %> |
+                <%= link_to 'Edit', edit_admin_user_path(user) %> |
+                <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+          </tr> 
+        <% end %>
+      </tbody> 
+    </table>
+    <footer>
+      <div class="submit_link">
+        <%= link_to 'New User', new_admin_user_path %>
+      </div>
+    </footer>
+  </div>
+</article>

@@ -1,0 +1,47 @@
+
+  <article class="module width_full">
+    <header><h3>Create User</h3></header>
+
+    <div class="">
+      <div class="module_content">
+			
+			<%= simple_form_for(@user, :url => admin_users_path, :method => 'POST') do |f| %>
+				
+				  <div class="message">
+				    <%= f.error_notification %>
+				  </div>
+				  <div class="message">
+				  	<%= display_base_errors @user %>
+				  </div>
+
+				  <div class="message">
+				    <%= f.input :name, :required => true %>
+				  </div>
+				  <div class="message">
+				    <%= f.input :email, :required => true %>
+				  </div>
+				  <div class="message">
+				    <%= f.input :password, :required => true %>
+				  </div>
+				  <div class="message">
+				    <%= f.input :password_confirmation, :required => true %>
+				  </div>
+
+				  <div class="message form-actions">
+				    <p>
+				      <%= f.button :submit %>
+				    </p>
+				  </div>
+
+			<% end %>	
+
+		  <div class="message form-actions">
+		    <p>
+					<%= link_to 'Back', admin_users_path %>
+		    </p>
+		  </div>
+
+      </div>
+    </div>
+
+  </article><!-- end of stats article -->

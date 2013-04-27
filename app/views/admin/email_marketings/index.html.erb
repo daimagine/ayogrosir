@@ -1,0 +1,43 @@
+
+<article class="module width_full">
+<header><h3 class="tabs_involved">List Email Marketings</h3></header>
+
+<div class="tab_container">
+  <table class="tablesorter" cellspacing="0"> 
+    <thead> 
+        <tr> 
+            <th></th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Status</th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+      <% @admin_email_marketings.each do |admin_email_marketing| %>
+        <tr>
+          <td>
+            <% if admin_email_marketing.post_status == 'draft' %>
+              <%= link_to 'Publish!', publish_admin_email_marketing_path(admin_email_marketing), :class => 'btn', method: :post, data: { confirm: 'Are you sure?' } %>
+            <% elsif admin_email_marketing.post_status == 'publish' %>
+            <% end %>
+          </td>
+          <td><%= admin_email_marketing.name %></td>
+          <td><%= admin_email_marketing.title %></td>
+          <td><%= truncate(h(admin_email_marketing.content), :length=>200).html_safe %></td>
+          <td><%= admin_email_marketing.post_status %></td>
+          <td>
+            <%= link_to 'Show', admin_email_marketing_path(admin_email_marketing) %> | 
+            <%= link_to 'Edit', edit_admin_email_marketing_path(admin_email_marketing) %> | 
+            <%= link_to 'Destroy', admin_email_marketing_path(admin_email_marketing), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr> 
+      <% end %>
+    </tbody> 
+  </table>
+  <footer>
+    <div class="submit_link">
+      <%= link_to 'New Email marketing', new_admin_email_marketing_path %>
+  </footer>
+</div>

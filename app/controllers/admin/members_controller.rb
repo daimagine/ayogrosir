@@ -19,6 +19,30 @@ class Admin::MembersController < AdminController
   	end
   end
 
+  def new 
+    @member = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @member }
+    end
+  end
+
+  def create
+    @member = User.new(params[:user])
+
+    respond_to do |format|
+      @member.skip_confirmation!
+      if @member.save
+        format.html { redirect_to admin_member_path(@member), notice: 'Member was successfully created.' }
+        format.json { render json: @member, status: :created, location: @member }
+      else
+        format.html { render :new }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def edit
   	@member = User.find(params[:id])
   end
@@ -27,7 +51,8 @@ class Admin::MembersController < AdminController
   	@member = User.find(params[:id])
 
     respond_to do |format|
-      if @member.update_attributes(params[:member])
+      @member.skip_confirmation!
+      if @member.update_attributes(params[:user])
         format.html { redirect_to admin_member_path(@member), notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
