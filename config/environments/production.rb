@@ -67,7 +67,12 @@ NuAyogrosir::Application.configure do
   config.active_support.deprecation = :notify
 
   # config.action_mailer.default_url_options = { :host => 'example.com' }
-  config.action_mailer.default_url_options = { :host => 'radiant-cove-1500.herokuapp.com' }
+  config.action_mailer.default_url_options = {
+      :host => 'http://radiant-cove-1500.herokuapp.com',
+      :only_path => false
+  }
+  config.action_controller.asset_host = 'http://radiant-cove-1500.herokuapp.com'
+  config.action_mailer.asset_host = config.action_controller.asset_host
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised

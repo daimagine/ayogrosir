@@ -20,7 +20,21 @@ class Product < ActiveRecord::Base
 										}, 
 										:default_url => "/assets/product-:style.png"
 
+	after_create :blast_email										
+
 	def logo_img
 		super || 'thumb-product.png'
+	end
+
+	private 
+
+	def blast_email
+		@followers = self.store.users
+		logger.info "Send email update notification to #{@followers.size} followers"
+
+		logger.debug self.pic
+
+    # Do blast email
+    ProductsMailer.new(self)
 	end
 end
