@@ -12,6 +12,11 @@
       </div>
       <div class="message">
         <p>
+          <b><%= @admin_store.store_type %> store</b>
+        </p>
+      </div>
+      <div class="message">
+        <p>
           <b>Category: </b>
           <%= @admin_store.categories && @admin_store.categories.first && @admin_store.categories.collect(&:name).join(", ") %>
         </p>

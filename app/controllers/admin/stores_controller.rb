@@ -43,12 +43,24 @@ class Admin::StoresController < AdminController
     @admin_store = Store.new(params[:store])
 
     respond_to do |format|
-      if @admin_store.save
-        format.html { redirect_to admin_store_path(@admin_store), notice: 'Store was successfully created.' }
-        format.json { render json: @admin_store, status: :created, location: @admin_store }
+      # validate featured
+      if validate_featured
+        if @admin_store.save
+          format.html { 
+            flash[:success] = 'Store was successfully created.'
+            redirect_to :back
+          }
+          format.json { render json: @admin_store, status: :created, location: @admin_store }
+        else
+          format.html { render :new }
+          format.json { render json: @admin_store.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @admin_store.errors, status: :unprocessable_entity }
+        format.html { 
+          flash[:error] = 'Only 5 featured stores is allowed'
+          redirect_to :back
+        }
+        format.json { render json: @admin_store, status: :created, location: @admin_store }
       end
     end
   end
@@ -59,12 +71,24 @@ class Admin::StoresController < AdminController
     @admin_store = Store.find(params[:id])
 
     respond_to do |format|
-      if @admin_store.update_attributes(params[:store])
-        format.html { redirect_to admin_store_path(@admin_store), notice: 'Store was successfully updated.' }
-        format.json { head :no_content }
+      # validate featured
+      if validate_featured
+        if @admin_store.update_attributes(params[:store])
+          format.html { 
+            flash[:success] = 'Store was successfully updated.'
+            redirect_to :back
+          }
+          format.json { head :no_content }
+        else
+          format.html { render :edit }
+          format.json { render json: @admin_store.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @admin_store.errors, status: :unprocessable_entity }
+        format.html { 
+          flash[:error] = 'Only 5 featured stores is allowed'
+          redirect_to :back
+        }
+        format.json { render json: @admin_store, status: :created, location: @admin_store }
       end
     end
   end
@@ -79,5 +103,27 @@ class Admin::StoresController < AdminController
       format.html { redirect_to admin_stores_url }
       format.json { head :no_content }
     end
+  end
+
+
+  def featured
+    @admin_stores = Store.includes(:market, :categories).where(:store_type => :featured)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @admin_stores }
+    end
+  end
+
+  private
+
+  def validate_featured
+    if @admin_store.id != nil
+      count = Store.where('store_type == ? and id <> ?', :featured, @admin_store.id).count
+    else
+      count = Store.where('store_type == ?', :featured).count
+    end
+    return true if(count < 5)
+    return false
   end
 end

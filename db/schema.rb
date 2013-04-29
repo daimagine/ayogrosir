@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427081150) do
+ActiveRecord::Schema.define(:version => 20130428064910) do
 
   create_table "advertises", :force => true do |t|
     t.string   "name"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(:version => 20130427081150) do
 
   create_table "stores", :force => true do |t|
     t.integer  "market_id"
-    t.string   "name",                            :null => false
+    t.string   "name",                                 :null => false
     t.string   "street1"
     t.string   "street2"
     t.string   "city"
@@ -165,13 +165,14 @@ ActiveRecord::Schema.define(:version => 20130427081150) do
     t.text     "info1"
     t.integer  "page_view",        :default => 0
     t.string   "status"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "info2"
     t.string   "pic_file_name"
     t.string   "pic_content_type"
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
+    t.string   "store_type",       :default => "free"
   end
 
   create_table "subscriptions", :force => true do |t|

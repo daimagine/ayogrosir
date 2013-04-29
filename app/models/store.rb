@@ -3,7 +3,7 @@ class Store < ActiveRecord::Base
 	
 	attr_accessible :name, :street1, :street2, :city, :postal_code,
 		:phone1, :phone2, :logo_img, :description, :info1, :page_view,
-		:status, :market_id, :category_ids, :pic
+		:status, :market_id, :category_ids, :pic, :store_type
 
 	validates :name, presence: true
 	validates :market_id, presence: true
@@ -14,7 +14,7 @@ class Store < ActiveRecord::Base
 	has_and_belongs_to_many :categories, :join_table => :store_categories
 
   has_and_belongs_to_many :users, join_table: 'store_follow'
-
+  
 	# paperclip
 	has_attached_file :pic, 
 										:styles => { 
@@ -26,4 +26,5 @@ class Store < ActiveRecord::Base
 	def logo_img
 		super || 'logo-toko.png'
 	end
+
 end

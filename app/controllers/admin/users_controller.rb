@@ -49,11 +49,22 @@ class Admin::UsersController < AdminController
   end
 
   def update
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
+
+    @user.skip_reconfirmation!
+    successfully_updated = if !needs_password?(@user, params)
+      logger.info "Update with password"
+      @user.update_with_password(params[:user])
+    else
+      # remove the virtual current_password attribute update_without_password
+      # doesn't know how to ignore it
+      logger.info "Update without password"
+      params[:user].delete(:current_password)
+      @user.update_without_password(params[:user])
+    end
 
     respond_to do |format|
-      @user.skip_confirmation!
-      if @user.update_attributes(params[:user])
+      if successfully_updated
         format.html { redirect_to admin_user_path(@user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -76,4 +87,14 @@ class Admin::UsersController < AdminController
     end
 	end
 
+  private
+
+  # check if we need password to update user data
+  # ie if password or email was changed
+  # extend this as needed
+  def needs_password?(user, params)
+    # user.email != params[:user][:email] ||
+      !params[:user][:password].blank?
+    logger.info "Password : #{params[:user][:password]} is blank? #{params[:user][:password].blank?}"
+  end
 end

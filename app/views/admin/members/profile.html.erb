@@ -1,0 +1,105 @@
+<article class="module width_half">
+  <header><h3><%= @member.name %></h3></header>
+
+  <div class="">
+    <div class="module_content">
+      
+      <div class="message">
+        <p id="notice"><%= notice %></p>
+      </div>
+
+      <div class="message">
+        <p>
+          <b>Email:</b>
+          <%= @member.email %>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
+
+<article class="module width_half">
+  <header><h3 class="tabs_involved">Following</h3></header>
+
+  <% if @member.stores && @member.stores.size > 0 %>
+
+    <div class="tab_container">
+      <table class="tablesorter" cellspacing="0"> 
+        <tbody> 
+          <% @member.stores && @member.stores.each do |store| %>
+            <tr> 
+                <td><%= store.name %></td>
+                <td>
+                  <%= link_to '<i class="icon-thumbs-down"></i> Unfollow'.html_safe, unfollow_store_path(store), class: 'btn btn-info pull-right', method: 'delete' %>
+                </td>
+            </tr> 
+          <% end %>
+        </tbody> 
+      </table>
+      <footer>
+      </footer>
+    </div>
+
+  <% else %>
+
+    <div class="">
+      <div class="module_content">
+        <div class="message">
+          <p>You are not following any store yet</p>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</article><!-- end of stats article -->
+
+<div class="clear"></div>
+
+
+<article class="module width_half">
+  <header><h3>Edit profile</h3></header>
+
+  <div class="">
+    <div class="module_content">
+    
+    <%= simple_form_for(current_user, :url => admin_member_path) do |f| %>
+      
+      <div class="message">
+        <%= f.error_notification %>
+      </div>
+
+      <div class="message">
+        <%= f.input :name %>
+      </div>
+      <div class="message">
+        <%= f.input :email %>
+      </div>
+
+      <div class="message">
+        <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+      </div>
+      <div class="message">
+        <%= f.input :password_confirmation, :required => false %>
+      </div>
+
+      <div class="message form-actions">
+        <p>
+          <%= f.button :submit %>
+        </p>
+      </div>
+
+    <% end %> 
+
+    <div class="message form-actions">
+      <p>
+        <%= link_to 'Show', admin_member_path(@member) %> |
+        <%= link_to 'Back', admin_members_path %>
+      </p>
+    </div>
+
+    </div>
+  </div>
+
+</article><!-- end of stats article -->

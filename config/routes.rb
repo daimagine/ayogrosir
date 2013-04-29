@@ -37,6 +37,9 @@ NuAyogrosir::Application.routes.draw do
     end
 
     resources :members do 
+      member do
+        get 'profile'
+      end
       collection do
         get 'subscriber/:id', :action => 'subscriber_show', :as => 'subscriber'
         get 'subscriber/:id/edit', :action => 'subscriber_edit', :as => 'edit_subscriber'
@@ -45,7 +48,16 @@ NuAyogrosir::Application.routes.draw do
       end
     end
 
-    resources :categories, :stores, :products, :users
+    resources :categories, :products
+
+    resources :stores do
+      collection do
+        get 'featured'
+      end
+    end
+
+    resources :users do
+    end
 
     resources :email_marketings do
       member do

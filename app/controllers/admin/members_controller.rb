@@ -48,16 +48,47 @@ class Admin::MembersController < AdminController
   end
 
   def update
-  	@member = User.find(params[:id])
+    @member = User.find(params[:id])
+
+    @member.skip_reconfirmation!
+    successfully_updated = if !needs_password?(@member, params)
+      logger.info "Update with password"
+      @member.update_with_password(params[:user])
+    else
+      # remove the virtual current_password attribute update_without_password
+      # doesn't know how to ignore it
+      logger.info "Update without password"
+      params[:user].delete(:current_password)
+      @member.update_without_password(params[:user])
+    end
+    @member.confirm!
 
     respond_to do |format|
-      @member.skip_confirmation!
-      if @member.update_attributes(params[:user])
-        format.html { redirect_to admin_member_path(@member), notice: 'Member was successfully updated.' }
-        format.json { head :no_content }
+      if successfully_updated
+        if @member.id == current_user.id
+          format.html {
+            flash[:success] = 'Your account was successfully updated.'
+            redirect_to profile_admin_member_path(@member) 
+          }
+          format.json { render json: @member, status: :created, location: @member }
+        else
+          format.html {
+            flash[:success] = 'Member was successfully updated.'
+            redirect_to admin_member_path(@member) 
+          }
+          format.json { render json: @member.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
+        if @member.id == current_user.id
+          format.html {
+            flash[:error] = 'Your account cannot be updated. Please try again.'
+            redirect_to profile_admin_member_path(@member) 
+          }
+          format.json { render json: @member, status: :created, location: @member }
+        else
+          format.html { render :edit }
+          format.json { render json: @member.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -130,4 +161,24 @@ class Admin::MembersController < AdminController
     end
 	end
 
+
+  def profile
+    @member = User.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @member }
+    end
+  end
+
+  private
+
+  # check if we need password to update user data
+  # ie if password or email was changed
+  # extend this as needed
+  def needs_password?(user, params)
+    # user.email != params[:user][:email] ||
+      !params[:user][:password].blank?
+    logger.info "Password : #{params[:user][:password]} is blank? #{params[:user][:password].blank?}"
+  end
 end

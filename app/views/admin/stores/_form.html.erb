@@ -15,6 +15,17 @@
   </div>
 
   <div class="message">
+    <div class="control-group string required store_name">
+      <label class="string required control-label" for="store_name">
+        Store Type
+      </label>
+      <div class="controls">
+        <%= f.select :store_type, [:free, :paid, :featured] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="message">
     <div class="control-group">
       <label class="control-label">
         Category
