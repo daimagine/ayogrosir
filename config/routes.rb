@@ -4,6 +4,9 @@ NuAyogrosir::Application.routes.draw do
 
   get "dashboard/index"
 
+  get "/contact", :controller => 'pages', :action => 'contact'
+  post "/contact", :controller => 'pages', :action => 'submit_contact'
+
   devise_for :users
   resources :users
   
@@ -48,7 +51,7 @@ NuAyogrosir::Application.routes.draw do
       end
     end
 
-    resources :categories, :products
+    resources :categories, :products, :contacts
 
     resources :stores do
       collection do

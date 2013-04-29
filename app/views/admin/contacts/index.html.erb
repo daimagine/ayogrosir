@@ -1,0 +1,34 @@
+
+<article class="module width_full">
+	<header><h3 class="tabs_involved">List Contact Messages</h3></header>
+
+	<div class="tab_container">
+	  <table class="tablesorter" cellspacing="0"> 
+	    <thead> 
+	        <tr> 
+	            <th>Name</th>
+	            <th>Email</th>
+	            <th>Subject</th>
+	            <th>Message</th>
+	            <th></th>
+	        </tr> 
+	    </thead> 
+	    <tbody> 
+	      <% @contacts.each do |contact| %>
+	        <tr> 
+	            <td><%= contact.name %></td>
+	            <td><%= contact.email %></td>
+	            <td><%= contact.subject %></td>
+	            <td><%= truncate(h(contact.message), :length=>200).html_safe %></td>
+	            <td>
+	              <%= link_to 'Show', admin_contact_path(contact) %> |
+              	<%= link_to 'Destroy', admin_contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
+	            </td>
+	        </tr> 
+	      <% end %>
+	    </tbody> 
+	  </table>
+	  <footer>
+	  </footer>
+	</div>
+</article>

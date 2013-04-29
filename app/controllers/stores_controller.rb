@@ -3,6 +3,8 @@ class StoresController < ApplicationController
 	before_filter :store, only: [:show, :edit, :update, :destroy]
 	before_filter :pageview_prepare
 
+  add_crumb 'Stores', :stores_path
+
 	def index
 		@search.update_attributes(params[:search_store])
 
@@ -13,6 +15,7 @@ class StoresController < ApplicationController
 	end
 
 	def show
+		add_crumb @store.name
 	end
 
 	private

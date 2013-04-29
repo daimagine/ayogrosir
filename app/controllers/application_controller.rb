@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_filter :initialize_app_counter
   before_filter :initialize_market, :initialize_store
 
+  before_filter :set_initial_breadcrumbs
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
@@ -95,4 +97,12 @@ class ApplicationController < ActionController::Base
       logger.info "Store new application counter for ip #{ipaddr}"
     end
   end
+
+
+  private
+
+  def set_initial_breadcrumbs
+    add_crumb "Home", '/'
+  end
+
 end

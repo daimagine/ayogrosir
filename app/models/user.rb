@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def following_store?(store)
   	stores.include? store
   end
+
+  def admin?
+    return ['superadmin', 'admin'].include?(self.user_type)
+  end
 end

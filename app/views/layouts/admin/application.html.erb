@@ -44,7 +44,7 @@
 	
 	<aside id="sidebar" class="column">
 
-		<% if ['superadmin', 'admin'].include?(current_user.user_type) %>
+		<% if current_user.admin? %>
 
 			<h3>Markets</h3>
 			<ul class="toggle">
@@ -113,6 +113,13 @@
 					<%= link_to 'List', admin_email_marketings_path %>
 				</li>
 			</ul>
+			
+			<h3>Contact Messages</h3>
+			<ul class="toggle">
+				<li class="icn_categories">
+					<%= link_to 'List', admin_contacts_path %>
+				</li>
+			</ul>
 		
 		<% end %>
 
@@ -126,7 +133,7 @@
 				<%= link_to 'Profile', profile_admin_member_path(current_user) %>
 			</li>
 
-			<% if ['superadmin', 'admin'].include?(current_user.user_type) %>
+			<% if current_user.admin? %>
 
 				<li class="icn_settings">
 					<%= link_to 'Preferences', admin_preferences_path %>

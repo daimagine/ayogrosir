@@ -1,0 +1,36 @@
+
+<article class="module width_full">
+  <header><h3><%= @contact.name %></h3></header>
+
+  <div class="">
+    <div class="module_content">
+      <div class="message">
+        <p id="notice"><%= notice %></p>
+      </div>
+      <div class="message">
+        <p>
+          <b>Subject:</b>
+          <%= @contact.subject %>
+        </p>
+      </div>
+      <div class="message">
+        <p>
+          <b>Email:</b>
+          <%= @contact.email %>
+        </p>
+      </div>
+      <div class="message">
+        <p>
+          <b>Message:</b>
+          <%= @contact.message.html_safe %>
+        </p>
+      </div>
+      <div class="message">
+        <p>
+          <%= link_to 'Back', admin_contacts_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</article><!-- end of stats article -->
