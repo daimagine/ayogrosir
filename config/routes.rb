@@ -56,6 +56,7 @@ NuAyogrosir::Application.routes.draw do
     resources :stores do
       collection do
         get 'featured'
+        get 'clean'
       end
     end
 

@@ -115,6 +115,22 @@ class Admin::StoresController < AdminController
     end
   end
 
+  def clean
+    pref = Preference.where(:pref_key => 'store_subscription_time').first
+    # set default
+    limit = if pref == nil then 180 else pref.pref_value.to_i end
+
+    logger.info "Store limit time #{limit} days"
+
+    store_ids = Store.where('created_at < ?', ( Time.now - limit.days) ).map(&:id)
+    logger.info "Store ids #{store_ids.join(', ')}"
+
+    logger.info "Remove products"
+    Product.delete_all(['store_id = ?', store_ids])
+
+    render :nothing => true
+  end
+
   private
 
   def validate_featured
