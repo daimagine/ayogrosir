@@ -50,20 +50,34 @@ module ApplicationHelper
     logger.info "Add parent menu #{to_slug(nav.name)}"
 
     proc.dom_class = 'nav nav-pills'
-    if nav.parent != true
+    if nav.parent != true && !nav.url.eql?('#category')
+      
       proc.item to_slug(nav.name), nav.name, nav.url
+
     else
-      proc.item to_slug(nav.name), "nav.name<b class='caret'></b>".html_safe, nav.url, 
+
+      proc.item to_slug(nav.name), "#{nav.name}<b class='caret'></b>".html_safe, nav.url, 
         :class => 'dropdown',
         :link => {:class => 'dropdown-toggle', 'data-toggle' => 'dropdown'} do |sub_proc|
 
+          sub_proc.dom_class = 'dropdown-menu'
           nav.childs.empty? && nav.childs.each do |sub_nav|
             #recursive
             logger.info "Add child menu #{to_slug(sub_nav.name)}"
             render_nav_menu(sub_proc, sub_nav)
           end
+
+          if nav.url.eql?('#category')
+            categories = Category.where(:cat_type => 'Store')
+            categories.each do |c|
+              logger.info "Add child menu #{to_slug(c.name)}"
+              sub_proc.item to_slug(c.name), c.name, stores_path(:search_store => { :category_id => c.id })
+            end
+          end
         end
     end
+
+    # logger.info "Menu : #{proc.to_yaml()}"
   end
 
 end

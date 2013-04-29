@@ -1,7 +1,7 @@
 <nav class="top-nav span12">
 
-  <%= render_navigation &navigation_menus %>
-<!-- 
+  <!--  <%= render_navigation :level => 1..2, &navigation_menus  %> -->
+
   <ul class="nav nav-pills">
     <% @navigation.each  do |nav| %>
       <% if nav.parent == true %>
@@ -19,16 +19,45 @@
             </li>
           </ul>
         </li>
+
+      <% elsif nav.url.eql?('#category')  %>
       
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= nav.name %><b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <% Category.where(:cat_type => 'Store').each do |c| %>
+              
+              <li>
+                <%= link_to c.name, stores_path(:search_store => { :category_id => c.id }) %>
+              </li>
+
+            <% end %>
+
+          </ul>
+        </li>
+
       <% else %>
 
-        <li class="active">
-          <%= link_to nav.name, nav.url %>
-        </li>
+        <% if nav.url.eql?('/') || request.path.eql?('/') %>
+
+          <li class="<%= 'active' if request.path.eql?(nav.url) %>">
+            <%= link_to nav.name, nav.url %>
+          </li>
+          
+        <% else %>
+
+          <li class="<%= 'active' if request.path.start_with?(nav.url) %>">
+            <%= link_to nav.name, nav.url %>
+          </li>
+
+        <% end %>
       
       <% end %>
     <% end %>
 
   </ul>
- -->
+
 </nav> <!-- end top-nav -->
