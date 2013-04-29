@@ -12,7 +12,7 @@
 <% @admin_advertises.each do |admin_advertise| %>
   <tr>
     <td><%= admin_advertise.name %></td>
-    <td><%= admin_advertise.pic %></td>
+    <td><%= admin_advertise.pic.url(:thumb) %></td>
     <td><%= link_to 'Show', admin_advertise %></td>
     <td><%= link_to 'Edit', edit_admin_advertise_path(admin_advertise) %></td>
     <td><%= link_to 'Destroy', admin_advertise, method: :delete, data: { confirm: 'Are you sure?' } %></td>

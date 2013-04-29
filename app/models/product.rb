@@ -18,7 +18,12 @@ class Product < ActiveRecord::Base
 											:thumb => "90x135#",
 											:small => "360x540>"
 										}, 
-										:default_url => "/assets/product-:style.png"
+										:default_url => "/assets/product-:style.png",
+										:convert_options => {
+     									:original => '  -gravity south  -pointsize 15 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:small => '  -gravity south  -pointsize 15 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:thumb => '  -gravity south  -pointsize 9 -fill black -annotate +0+0 " ayogrosir.com "' 
+     								}
 
 	after_create :blast_email										
 

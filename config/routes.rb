@@ -18,7 +18,7 @@ NuAyogrosir::Application.routes.draw do
   end
   
   # stores routes
-  resources :stores, :only => [:index, :show] do 
+  resources :stores, :only => [:index, :show], path: 'toko' do 
     member do
       post 'follow' => 'followers#create'
       delete 'unfollow' => 'followers#destroy'
@@ -26,7 +26,7 @@ NuAyogrosir::Application.routes.draw do
   end
 
   # products routes
-  resources :products, :only => [:index, :show]
+  resources :products, :only => [:index, :show], path: 'produk'
 
   # manage admin (backend)
   match :admin, :to => 'admin/dashboard#index'

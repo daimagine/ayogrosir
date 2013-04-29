@@ -65,11 +65,14 @@
       <%= f.file_field :pic %>
     </div>
   </div>
+  
   <div class="message">
-    <%= f.input :description %>
+    <label class="control-label">Description</label>
+    <%= f.text_area :description, :class => "tinymce", :rows => 20, :cols => 60 %>
   </div>
   <div class="message">
-    <%= f.input :info1 %>
+    <label class="control-label">Information</label>
+    <%= f.text_area :info1, :class => "tinymce", :rows => 20, :cols => 60 %>
   </div>
 
   <div class="message form-actions">

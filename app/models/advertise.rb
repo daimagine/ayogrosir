@@ -12,7 +12,12 @@ class Advertise < ActiveRecord::Base
 											:medium => "369x220>",
 											:small => "170x150>"
 										}, 
-										:default_url => "/assets/banner-:style.png"
+										:default_url => "/assets/banner-:style.png",
+										:convert_options => {
+     									:medium => '  -gravity south  -pointsize 20 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:small => '  -gravity south  -pointsize 15 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:thumb => '  -gravity south  -pointsize 9 -fill black -annotate +0+0 " ayogrosir.com "'
+     								}
 
 	def image
 		super || 'thumb-product.png'

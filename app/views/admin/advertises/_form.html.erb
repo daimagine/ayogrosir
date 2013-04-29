@@ -6,7 +6,7 @@
 
   <% if @admin_advertise.pic.exists? %>
 	  <div class="message">
-	  	<%= image_tag @admin_advertise.pic %>
+	  	<%= image_tag @admin_advertise.pic.url(:small) %>
 	  </div>
 	<% end %>
 

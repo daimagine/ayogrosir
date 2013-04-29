@@ -1,3 +1,4 @@
+
   <div class="message">
     <%= f.error_notification %>
   </div>
@@ -8,7 +9,8 @@
     <%= f.input :title %>
   </div>
   <div class="message">
-    <%= f.input :content %>
+    <label class="control-label">Content</label>
+    <%= f.text_area :content, :class => "tinymce", :rows => 20, :cols => 60 %>
   </div>
 
   <div class="message form-actions">
@@ -16,3 +18,5 @@
       <%= f.button :submit %>
     </p>
   </div>
+
+  

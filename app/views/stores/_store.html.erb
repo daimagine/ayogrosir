@@ -9,7 +9,7 @@
 	<% store.products && store.products.latest.limit(5).each do |product| %>
 
     <div class="span2 market">
-    	<%= link_to image_tag(product.pic), product %>
+    	<%= link_to image_tag(product.pic.url(:small)), product %>
       <p>
         <%= product.name %><br><span>Rp <%= number_with_precision(product.price, :precision => 2) %></span>
       </p>

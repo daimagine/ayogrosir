@@ -134,10 +134,15 @@ class Admin::StoresController < AdminController
   private
 
   def validate_featured
-    if @admin_store.id != nil
-      count = Store.where('store_type == ? and id <> ?', :featured, @admin_store.id).count
+    logger.info "check if select as featured : #{@admin_store.store_type.eql?('featured')}"
+    if @admin_store.store_type.eql?('featured')
+      if @admin_store.id != nil
+        count = Store.where('store_type == ? and id <> ?', :featured, @admin_store.id).count
+      else
+        count = Store.where('store_type == ?', :featured).count
+      end
     else
-      count = Store.where('store_type == ?', :featured).count
+      count = 0
     end
     return true if(count < 5)
     return false

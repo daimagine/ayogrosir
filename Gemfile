@@ -36,3 +36,5 @@ gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri
 gem "paperclip", "~> 3.0"
 gem "simple-navigation"
 gem "crummy", "~> 1.7.1"
+
+gem 'tinymce-rails'

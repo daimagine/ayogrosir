@@ -21,7 +21,12 @@ class Store < ActiveRecord::Base
 											:thumb => "150x100#",
 											:small => "300x200>"
 										}, 
-										:default_url => "/assets/logo-toko-:style.png"
+										:default_url => "/assets/logo-toko-:style.png",
+										:convert_options => {
+     									:original => '  -gravity south  -pointsize 15 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:small => '  -gravity south  -pointsize 15 -fill black -annotate +0+0 " ayogrosir.com " ' ,
+     									:thumb => '  -gravity south  -pointsize 9 -fill black -annotate +0+0 " ayogrosir.com "'
+     								}
 
 	def logo_img
 		super || 'logo-toko.png'
