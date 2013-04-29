@@ -52,24 +52,50 @@ class Admin::UsersController < AdminController
     @user = User.find(params[:id])
 
     @user.skip_reconfirmation!
-    successfully_updated = if !needs_password?(@user, params)
+    successfully_updated = false
+    flag = needs_password?(@user, params)
+    logger.info "Need password? #{flag}"
+    if flag
       logger.info "Update with password"
-      @user.update_with_password(params[:user])
+      successfully_updated = @user.update_with_password(params[:user])
     else
       # remove the virtual current_password attribute update_without_password
       # doesn't know how to ignore it
       logger.info "Update without password"
       params[:user].delete(:current_password)
-      @user.update_without_password(params[:user])
+      successfully_updated = @user.update_without_password(params[:user])
     end
+    @user.confirm!
 
     respond_to do |format|
       if successfully_updated
-        format.html { redirect_to admin_user_path(@user), notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        if @user.id == current_user.id
+          # Sign in the user by passing validation in case his password changed
+          sign_in @user, :bypass => true
+          
+          format.html {
+            flash[:success] = 'Your account was successfully updated.'
+            redirect_to admin_user_path(@user) 
+          }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html {
+            flash[:success] = 'User was successfully updated.'
+            redirect_to admin_user_path(@user) 
+          }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.id == current_user.id
+          format.html {
+            flash[:error] = 'Your account cannot be updated. Please try again.'
+            redirect_to admin_user_path(@user) 
+          }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

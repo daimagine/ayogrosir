@@ -51,21 +51,27 @@ class Admin::MembersController < AdminController
     @member = User.find(params[:id])
 
     @member.skip_reconfirmation!
-    successfully_updated = if !needs_password?(@member, params)
+    successfully_updated = false
+    flag = needs_password?(@member, params)
+    logger.info "Need password? #{flag}"
+    if flag
       logger.info "Update with password"
-      @member.update_with_password(params[:user])
+      successfully_updated = @member.update_with_password(params[:user])
     else
       # remove the virtual current_password attribute update_without_password
       # doesn't know how to ignore it
       logger.info "Update without password"
       params[:user].delete(:current_password)
-      @member.update_without_password(params[:user])
+      successfully_updated = @member.update_without_password(params[:user])
     end
     @member.confirm!
 
     respond_to do |format|
       if successfully_updated
         if @member.id == current_user.id
+          # Sign in the user by passing validation in case his password changed
+          sign_in @member, :bypass => true
+          
           format.html {
             flash[:success] = 'Your account was successfully updated.'
             redirect_to profile_admin_member_path(@member) 
@@ -178,7 +184,7 @@ class Admin::MembersController < AdminController
   # extend this as needed
   def needs_password?(user, params)
     # user.email != params[:user][:email] ||
-      !params[:user][:password].blank?
-    logger.info "Password : #{params[:user][:password]} is blank? #{params[:user][:password].blank?}"
+    return !params[:user][:password].blank?
+    logger.info "Password : [#{params[:user][:password]}] is not blank? #{!params[:user][:password].blank?}"
   end
 end

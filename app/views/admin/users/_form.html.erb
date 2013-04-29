@@ -1,0 +1,24 @@
+
+  <div class="message">
+    <%= f.error_notification %>
+  </div>
+  <div class="message">
+    <%= f.input :name %>
+  </div>
+  <div class="message">
+    <%= f.input :email %>
+  </div>
+
+  <div class="message">
+    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+  </div>
+  <div class="message">
+    <%= f.input :password_confirmation, :required => false %>
+  </div>
+
+
+  <div class="message form-actions">
+    <p>
+      <%= f.button :submit %>
+    </p>
+  </div>
