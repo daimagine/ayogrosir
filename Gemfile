@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 
 group :production, :staging do
+  gem 'rails_12factor'
   gem "pg"
 end
 
